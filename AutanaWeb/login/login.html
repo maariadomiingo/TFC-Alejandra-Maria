@@ -4,40 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autana - Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="logo-container">
-            <!-- Sustituir con tu logo -->
-            <img src="logo.png" alt="Autana Logo" class="logo">
-        </div>
-        
-        <form id="loginForm">
+    <div class="login-page">
+      <div class="left-side">
+        <div class="container">
+          <div class="logo-container">
+            <img src="../img/logoSinFondo.png" alt="Autana Logo" class="logo">
+          </div>
+  
+          <form id="loginForm">
             <div class="form-group">
-                <input type="email" id="email" placeholder="Correo electrónico" required>
-                <i class="fas fa-envelope"></i>
+              <input id="email" placeholder="Correo electrónico">
+              <i class="fas fa-envelope"></i>
             </div>
-            
+            <span class="error-message" id="emailError"></span>
+  
             <div class="form-group">
-                <input type="password" id="password" placeholder="Contraseña" required>
-                <i class="fas fa-lock"></i>
+              <input id="password" placeholder="Contraseña">
+              <i class="fas fa-lock"></i>
             </div>
-            
+            <span class="error-message" id="passwordError"></span>
+  
             <button type="submit" class="btn">INICIAR SESIÓN</button>
-            
-            <div class="separator">o</div>
-            
-            <button type="button" class="btn google-btn">
-                <img src="google-icon.png" alt="Google Icon" class="google-icon">
-                INICIAR SESIÓN CON GOOGLE
-            </button>
-            
+            <button type="submit" class="btn google-btn">INICIAR SESIÓN CON GOOGLE</button>
+  
             <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
-        </form>
-    </div>
 
-    <script src="script.js"></script>
-</body>
+            <a href="#" class="forgot-password">Crear cuenta</a>
+          </form>
+        </div>
+      </div>
+  
+      <div class="right-side">
+        <img src="../img/ejemploFotoInicioSesion.jpg" alt="fondo decorativa" />
+      </div>
+    </div>
+  
+    <script src="login.js"></script>
+  </body>
+  
 </html>

@@ -1,38 +1,88 @@
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const errorMessages = [];
-    
-    // Validación de email
-    if (!validateEmail(email)) {
-        errorMessages.push('Por favor ingresa un correo electrónico válido');
-    }
-    
-    // Validación de contraseña
-    if (password.length < 6) {
-        errorMessages.push('La contraseña debe tener al menos 6 caracteres');
-    }
-    
-    // Mostrar errores o enviar formulario
-    if (errorMessages.length > 0) {
-        alert(errorMessages.join('\n'));
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("loginForm");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+
+  const emailError = document.getElementById("emailError");
+  const passwordError = document.getElementById("passwordError");
+
+  // Validación en tiempo real
+  emailInput.addEventListener("input", () => {
+    if (!emailInput.value.trim()) {
+      emailError.textContent = "El correo es obligatorio.";
+    } else if (!validateEmail(emailInput.value.trim())) {
+      emailError.textContent = "Formato de correo inválido.";
     } else {
-        // Aquí iría la lógica de autenticación real
-        alert('Inicio de sesión exitoso!');
-        this.reset();
+      emailError.textContent = "";
     }
-});
+  });
 
-// Función para validar email
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-}
+  passwordInput.addEventListener("input", () => {
+    if (!passwordInput.value.trim()) {
+      passwordError.textContent = "La contraseña es obligatoria.";
+    } else if (passwordInput.value.length < 6) {
+      passwordError.textContent = "Debe tener al menos 6 caracteres.";
+    } else {
+      passwordError.textContent = "";
+    }
+  });
 
-// Evento para el botón de Google
-document.querySelector('.google-btn').addEventListener('click', function() {
-    // Aquí iría la integración con Google Sign-In
-    alert('Iniciando sesión con Google...');
+  // Validación al enviar el formulario
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    let valid = true;
+
+    if (!email) {
+      emailError.textContent = "El correo es obligatorio.";
+      valid = false;
+    } else if (!validateEmail(email)) {
+      emailError.textContent = "Formato de correo inválido.";
+      valid = false;
+    } else {
+      emailError.textContent = "";
+    }
+
+    if (!password) {
+      passwordError.textContent = "La contraseña es obligatoria.";
+      valid = false;
+    } else if (password.length < 6) {
+      passwordError.textContent = "Debe tener al menos 6 caracteres.";
+      valid = false;
+    } else {
+      passwordError.textContent = "";
+    }
+
+    if (!valid) return;
+
+    try {
+      const response = await fetch("./login.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.message || "Error al iniciar sesión.");
+
+      // Si el login es exitoso, redirige al usuario
+      alert("Inicio de sesión exitoso");
+      //window.location.href = "../home/home.html"; // Cambia esto a la página que desees
+
+    } catch (error) {
+      // Mostrar el error en un alert (esto puede cambiarse a una visualización más amigable)
+      alert(error.message);
+    }
+  });
+
+  function validateEmail(email) {
+    const regex = /^[\w.-]+@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return regex.test(email);
+  }
 });
