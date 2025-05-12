@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let valid = true;
 
+    // Validaciones previas
     if (!email) {
       emailError.textContent = "El correo es obligatorio.";
       valid = false;
@@ -69,15 +70,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await response.json();
 
-      if (!response.ok) throw new Error(data.message || "Error al iniciar sesión.");
-
-      // Si el login es exitoso, redirige al usuario
-      alert("Inicio de sesión exitoso");
-      //window.location.href = "../home/home.html"; // Cambia esto a la página que desees
-
+      if (data.success) {
+        emailError.textContent = "";
+        passwordError.textContent = "";
+        alert("Inicio de sesión exitoso");
+        window.location.href = "../home/home.html";
+      } else {
+        // Mostrar errores en campos
+        if (
+          data.message.toLowerCase().includes("correo") ||
+          data.message.toLowerCase().includes("contraseña")
+        ) {
+          passwordError.textContent = "Correo o contraseña incorrectos.";
+        } else {
+          alert(data.message || "Error al iniciar sesión.");
+        }
+      }
     } catch (error) {
-      // Mostrar el error en un alert (esto puede cambiarse a una visualización más amigable)
-      alert(error.message);
+      alert("Error en la solicitud: " + error.message);
     }
   });
 
