@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>our Mission</title>
+</head>
+<body class="bg-white">
+     <nav class="px-6 py-4 shadow-md">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+       <img src="../img/logoSinFondo.png" alt="" class="logo">
+
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <li><a href="#" class="hover:text-black">Collection</a></li>
+        <li><a href="#" class="hover:text-black">Our Mission</a></li>
+        <li><a href="#" class="hover:text-black">Behind the threads</a></li>
+      </ul>
+
+      <!-- Icons -->
+      <div class="flex items-center space-x-4">
+        <button aria-label="Login">
+          <a href="../login/login.html" aria-label="Login">
+            <i data-lucide="user" class="w-6 h-6 text-gray-700 hover:text-black"></i>
+        </a>
+        </button>
+        <button aria-label="Cart">
+          <i data-lucide="shopping-cart" class="w-6 h-6 text-gray-700 hover:text-black"></i>
+        </button>
+
+        <!-- Mobile Hamburger -->
+        <button id="menu-toggle" class="md:hidden">
+          <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mt-4 hidden md:hidden space-y-2">
+      <a href="#" class="block text-gray-700 hover:text-black">Colection</a>
+      <a href="#" class="block text-gray-700 hover:text-black">Our Mission</a>
+      <a href="#" class="block text-gray-700 hover:text-black">Behind the threads</a>
+    </div>
+  </nav>
+
+<section class="video-section">
+        Reemplaza con tu propio video
+        <video class="video-background" autoplay muted loop>
+            <source src="../img/6684_Weaving_Loom_1920x1080.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+        
+        <div class="content-overlay">
+            <h1 class="title">Hecho en Amazonas</h1>
+            <h2 class="subtitle">Crafted by Heart, Guided by Heritage</h2>
+            <p class="description">
+                An intimate look at how each garment is brought to life by our founder and designer. 
+                This video recalls the full creative process from inspiration to final detail - 
+                blending ancestral techniques with a contemporary vision.
+            </p>
+        </div>
+    </section>
+</body>
+</html>

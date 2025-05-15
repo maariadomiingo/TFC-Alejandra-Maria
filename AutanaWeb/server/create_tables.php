@@ -15,8 +15,36 @@ try {
             nombre VARCHAR(100) NOT NULL,
             correo VARCHAR(255) UNIQUE NOT NULL,
             password VARCHAR(255) NOT NULL,
+            es_admin BOOLEAN DEFAULT FALSE,
             creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
+
+        CREATE TABLE IF NOT EXISTS user_profiles (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    talla_top VARCHAR(10),
+    talla_bottom VARCHAR(10),    
+    direccion_envio TEXT
+);
+
+CREATE TABLE IF NOT EXISTS productos (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    imagen_url TEXT,
+    disponible BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS preorders (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    product_id INT NOT NULL REFERENCES productos(id) ON DELETE CASCADE,
+    talla VARCHAR(10),
+    cantidad INT DEFAULT 1,
+    estado VARCHAR(50) DEFAULT 'pendiente',
+    fecha_preorden TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
     ";
     $pdo->exec($crearTabla);
 
@@ -47,8 +75,6 @@ try {
             echo "El usuario con correo {$usuario['correo']} ya existe.<br>";
         }
     }
-
 } catch (PDOException $e) {
     die("Error: " . $e->getMessage());
 }
-?>
