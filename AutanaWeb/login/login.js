@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         emailError.textContent = "";
         passwordError.textContent = "";
         alert("Inicio de sesión exitoso");
-        window.location.href = "../html/home.html";
+        window.location.href = "../home/home.html";
       } else {
         // Mostrar errores en campos
         if (
