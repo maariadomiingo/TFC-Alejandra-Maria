@@ -1,0 +1,199 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background-color: #fff;
+  color: #111;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.step {
+  font-size: 14px;
+  color: #999;
+  position: relative;
+}
+
+.step.active {
+  color: #111;
+  font-weight: bold;
+  border-bottom: 2px solid #111;
+  padding-bottom: 4px;
+}
+
+.cart-grid {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.cart-items {
+  flex: 2;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+thead {
+  font-size: 14px;
+  color: #888;
+}
+
+td, th {
+  padding: 16px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #eee;
+}
+
+.product {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.product img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.product p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.product span {
+  font-size: 13px;
+  color: #666;
+}
+
+.product a {
+  font-size: 13px;
+  color: #999;
+  text-decoration: none;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity button {
+  padding: 2px 8px;
+  border: 1px solid #ccc;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.coupon {
+  margin-top: 40px;
+}
+
+.coupon p {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.coupon span {
+  font-size: 13px;
+  color: #666;
+}
+
+.coupon-form {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.coupon-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  flex: 1;
+  border-radius: 6px;
+}
+
+.coupon-form button {
+  padding: 8px 20px;
+  border: none;
+  background: #111;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.summary {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  min-width: 300px;
+  height: fit-content;
+}
+
+.summary h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.summary form label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.summary form input[type="radio"] {
+  margin-right: 10px;
+}
+
+.totals {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.totals p {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.total {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cart</h1>
+      <div class="steps">
+        <div class="step active">1 Shopping cart</div>
+        <div class="step">2 Checkout details</div>
+        <div class="step">3 Order complete</div>
+      </div>
+
+      <div class="cart-grid">
+        <!-- LEFT SIDE -->
+        <div class="cart-items">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="product">
+                  <img src="../img/outfit1.png" alt="Tray Table" />
+                  <div>
+                    <p>Outfit 1</p>
+                    <a href="#">× Remove</a>
+                  </div>
+                </td>
+                <td>$19.00</td>
+                <td><strong>$38.00</strong></td>
+              </tr>
+              <tr>
+                <td class="product">
+                  <img
+                    src="../img/outfit2.png" 
+                    alt="Tray Table Red"
+                  />
+                  <div>
+                    <p>Outfit 2</p>
+                    <a href="#">× Remove</a>
+                  </div>
+                </td>
+                <td>$19.00</td>
+                <td><strong>$38.00</strong></td>
+              </tr>
+              <tr>
+                <td class="product">
+                  <img src="../img/outift3.png"  alt="Table lamp" />
+                  <div>
+                    <p>Outfit 3</p>
+                    <a href="#">× Remove</a>
+                  </div>
+                </td>
+                <td>$39.00</td>
+                <td><strong>$39.00</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="coupon">
+            <p>Have a coupon?</p>
+            <span>Add your code for an instant cart discount</span>
+            <div class="coupon-form">
+              <input type="text" placeholder="Coupon Code" />
+              <button>Apply</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="summary">
+          <h2>Cart summary</h2>
+          <form>
+            <label
+              ><input type="radio" name="shipping" checked /> Normal shipping
+              <span>$150.00</span></label
+            >
+            <label
+              ><input type="radio" name="shipping" /> Express shipping
+              <span>+$355.00</span></label
+            >
+          </form>
+          <div class="totals">
+            <p>Subtotal <span>$1234.00</span></p>
+            <p class="total">Total <span>$1345.00</span></p>
+          </div>
+          <button class="checkout-btn">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

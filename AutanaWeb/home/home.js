@@ -12,3 +12,7 @@
         mainText.innerHTML = texts[index];
       });
     });
+
+    function goToCart() {
+  window.location.href = "../cart/cart.html";
+}
