@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gracias por tu compra</title>
+</head>
+<body>
+  <div id="mensaje"></div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+
+    fetch(`http://localhost:4242/session-status?session_id=${sessionId}`)
+      .then(res => res.json())
+      .then(data => {
+        const mensajeDiv = document.getElementById("mensaje");
+        if (data.status === 'complete') {
+          mensajeDiv.innerHTML = `
+            <h2>¡Gracias por tu compra!</h2>
+            <p>Te hemos enviado un correo de confirmación a <strong>${data.customer_email}</strong>.</p>
+          `;
+        } else {
+          mensajeDiv.innerHTML = "<p>Pago no completado.</p>";
+        }
+      });
+  </script>
+</body>
+</html>

@@ -14,5 +14,5 @@
     });
 
     function goToCart() {
-  window.location.href = "../cart/cart.html";
+  window.location.href = "../stripeCart/checkout/checkout.html";
 }
