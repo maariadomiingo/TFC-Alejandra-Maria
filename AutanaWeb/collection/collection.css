@@ -1,0 +1,103 @@
+/* Contenedor principal de la colección */
+.carrusel-collection {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Título */
+.carrusel-collection .titulo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #222;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.outfit-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas fijas */
+  gap: 1.8rem;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.outfit {
+  background: #fff;
+  height: 500px;
+  width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgb(0 0 0 / 0.1);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+
+.outfit:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgb(0 0 0 / 0.15);
+}
+
+/* Imagen uniforme */
+.outfit img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+/* Nombre, descripción y precio */
+.outfit br {
+  display: none; /* Para mejor control visual, puedes eliminar br y usar bloques o spans */
+}
+
+.outfit > span {
+  display: block;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 0.4rem;
+  color: #333;
+}
+
+/* Texto (nombre y descripción) estilo */
+.outfit > :not(img):not(span):not(button) {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Botón de favorito */
+.favorite-btn {
+  align-self: flex-start;
+  background-color: transparent;
+  border: 2px solid #e91e63;
+  color: #e91e63;
+  padding: 0.35rem 0.8rem;
+  font-size: 1.3rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+.favorite-btn:hover {
+  background-color: #e91e63;
+  color: white;
+}
+
+/* Responsive tweaks (opcional) */
+@media (max-width: 600px) {
+  .outfit img {
+    height: 200px;
+  }
+}

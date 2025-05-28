@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         emailError.textContent = "";
         passwordError.textContent = "";
         alert("Inicio de sesión exitoso");
-        window.location.href = "../home/home.html";
+        window.location.href = "../homeUser/home.php";
       } else {
         // Mostrar errores en campos
         if (
@@ -96,3 +96,39 @@ document.addEventListener("DOMContentLoaded", () => {
     return regex.test(email);
   }
 });
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("password");
+
+// Mostrar la contraseña mientras el usuario mantiene presionado el icono
+togglePassword.addEventListener("mousedown", () => {
+  passwordInput.setAttribute("type", "text");
+  togglePassword.classList.remove("fa-eye");
+  togglePassword.classList.add("fa-eye-slash");
+});
+
+togglePassword.addEventListener("mouseup", () => {
+  passwordInput.setAttribute("type", "password");
+  togglePassword.classList.remove("fa-eye-slash");
+  togglePassword.classList.add("fa-eye");
+});
+
+togglePassword.addEventListener("mouseleave", () => {
+  // En caso de que el usuario mueva el mouse fuera del icono sin soltar
+  passwordInput.setAttribute("type", "password");
+  togglePassword.classList.remove("fa-eye-slash");
+  togglePassword.classList.add("fa-eye");
+});
+
+// Para dispositivos táctiles
+togglePassword.addEventListener("touchstart", () => {
+  passwordInput.setAttribute("type", "text");
+  togglePassword.classList.remove("fa-eye");
+  togglePassword.classList.add("fa-eye-slash");
+});
+
+togglePassword.addEventListener("touchend", () => {
+  passwordInput.setAttribute("type", "password");
+  togglePassword.classList.remove("fa-eye-slash");
+  togglePassword.classList.add("fa-eye");
+});
+

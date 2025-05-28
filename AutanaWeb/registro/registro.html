@@ -6,45 +6,39 @@
   <link rel="stylesheet" href="registro.css">
 </head>
 <body>
-  
 
-    <!-- Video de fondo -->
+  <!-- Video de fondo -->
   <video autoplay muted loop id="background-video">
     <source src="../img/6684_Weaving_Loom_1920x1080.mp4" type="video/mp4">
     Tu navegador no soporta video HTML5.
   </video>
 
   <form id="registerForm" novalidate>
-<a href="../home/home.html">
-    <img src="../img/logoSinFondo.png" alt="" class="logo">
-  </a>
+    <a href="../home/home.html">
+      <img src="../img/logoSinFondo.png" alt="Logo" class="logo">
+    </a>
 
-    <label>Nombre:</label><br>
-    <input type="text" name="name" id="name">
+    <!-- Nombre -->
+    <label for="name">Nombre:</label><br>
+    <input type="text" name="name" id="name" required>
     <div class="error" id="nameError">Ingresa tu nombre.</div><br>
 
-    <label>Email:</label><br>
-    <input type="email" name="email" id="email">
+    <!-- Correo electrónico -->
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" id="email" required>
     <div class="error" id="emailError">Ingresa un email válido.</div><br>
 
-    <label>Contraseña:</label><br>
-    <input type="password" name="password" id="password">
+    <!-- Contraseña -->
+    <label for="password">Contraseña:</label><br>
+    <input type="password" name="password" id="password" required minlength="6">
     <div class="error" id="passwordError">La contraseña debe tener al menos 6 caracteres.</div><br>
 
-    <h3>Perfil</h3>
+    <!-- Confirmar contraseña -->
+    <label for="confirm_password">Confirmar Contraseña:</label><br>
+    <input type="password" name="confirm_password" id="confirm_password" required>
+    <div class="error" id="confirmPasswordError">Las contraseñas no coinciden.</div><br>
 
-    <label>Talla superior:</label><br>
-    <input type="text" name="talla_top" id="talla_top">
-    <div class="error" id="topError">Ingresa tu talla superior.</div><br>
-
-    <label>Talla inferior:</label><br>
-    <input type="text" name="talla_bottom" id="talla_bottom">
-    <div class="error" id="bottomError">Ingresa tu talla inferior.</div><br>
-
-    <label>Dirección de envío:</label><br>
-    <textarea name="direccion_envio" id="direccion_envio" rows="3"></textarea>
-    <div class="error" id="direccionError">Ingresa tu dirección de envío.</div><br>
-
+    <!-- Botón de registro -->
     <button type="submit">Registrarse</button>
   </form>
 

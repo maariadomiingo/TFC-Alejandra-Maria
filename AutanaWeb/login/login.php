@@ -1,4 +1,5 @@
 <?php
+session_start(); // ✅ Iniciar la sesión antes de cualquier salida
 header("Content-Type: application/json");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -74,6 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($usuario && password_verify($password, $usuario['password'])) {
+            // ✅ Guardar sesión
+            $_SESSION['user_id'] = $usuario['id'];
+            $_SESSION['user_name'] = $usuario['nombre'];
+
             echo json_encode(["success" => true, "message" => "Login correcto"]);
         } else {
             echo json_encode(["success" => false, "message" => "Correo o contraseña incorrectos"]);

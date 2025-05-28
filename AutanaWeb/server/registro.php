@@ -1,36 +1,35 @@
 <?php
 require_once 'db_config.php';
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Recuperamos los datos del formulario
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
-    $talla_top = $_POST['talla_top'] ?? '';
-    $talla_bottom = $_POST['talla_bottom'] ?? '';
-    $direccion_envio = $_POST['direccion_envio'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
 
-    if (!$name || !$email || !$password) {
+    // Validamos que los campos obligatorios estén presentes
+    if (!$name || !$email || !$password || !$confirm_password) {
         echo "Todos los campos obligatorios deben estar completos.";
         exit;
     }
 
-    // Hashear contraseña
+    // Validar que las contraseñas coincidan
+    if ($password !== $confirm_password) {
+        echo "Las contraseñas no coinciden.";
+        exit;
+    }
+
+    // Hashear la contraseña
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     try {
-        // Insertar en users
+        // Insertar el usuario en la tabla 'Usuarios'
         $stmt = $pdo->prepare("INSERT INTO Usuarios (nombre, correo, password) VALUES (?, ?, ?)");
         $stmt->execute([$name, $email, $hashedPassword]);
         $userId = $pdo->lastInsertId();
 
-        // Insertar en user_profiles
-        $stmt = $pdo->prepare(
-            "INSERT INTO user_profiles (usuario_id, talla_top, talla_bottom, direccion_envio) 
-             VALUES (?, ?, ?, ?)"
-        );
-        $stmt->execute([$userId, $talla_top, $talla_bottom, $direccion_envio]);
-
+        // Aquí no insertamos datos de 'user_profiles' porque ya no son necesarios
         echo "¡Registro exitoso! Bienvenido/a a AUTANA.";
     } catch (PDOException $e) {
         if ($e->errorInfo[1] == 1062) {
