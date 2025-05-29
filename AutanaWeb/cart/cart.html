@@ -1,44 +1,25 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Carrito</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito de Compras</title>
     <script src="https://js.stripe.com/v3/"></script>
-    <style>
-      #checkout {
-        max-width: 600px;
-        margin: 100px auto;
-      }
-    </style>
+    <link rel="stylesheet" href="cart.css" />
+    <script src="cart.js" defer></script>
   </head>
   <body>
-    <h2>Finaliza tu compra</h2>
-    <div id="checkout">Cargando...</div>
-
-    <script>
-      async function startCheckout() {
-        // Petición al backend para crear sesión
-        const res = await fetch(
-          "http://localhost:4242/create-checkout-session",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        const { clientSecret } = await res.json();
-
-        const stripe = Stripe(
-          "pk_test_51RSxu8Gh171OKFHVkMNBipKFyx92rGe7AUBVdYZBss9qNFE9TDONdTCjVJL1LWGm6mz3S7tosSuuB0MKAq8AWHHZ00qLVGD4l6"
-        ); // tu clave pública
-        const checkout = await stripe.initEmbeddedCheckout({ clientSecret });
-
-        checkout.mount("#checkout");
-      }
-
-      startCheckout();
-    </script>
+    <h1>Carrito de Compras</h1>
+    <div id="cart-items"></div>
+    <div id="shipping-options">
+      <h2>Opciones de Envío</h2>
+      <select id="shipping-select">
+        <option value="standard">Envío Estándar - $5.00</option>
+        <option value="express">Envío Express - $10.00</option>
+      </select>
+    </div>
+    <div id="cart-total"></div>
+    <button id="checkout-button">Proceder al Pago</button>
+    <div id="checkout"></div>
   </body>
 </html>

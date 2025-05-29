@@ -1,0 +1,138 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  background-color: #f5f4f2;
+  color: #1a1a1a;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título del carrito */
+h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  color: #111;
+}
+
+/* Contenedor de ítems */
+#cart-items {
+  width: 100%;
+  max-width: 700px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Tarjeta de producto */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item img {
+  width: 80px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-info h3 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.cart-item-info p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.cart-item-price {
+  font-weight: bold;
+}
+
+/* Envío */
+#shipping-options {
+  width: 100%;
+  max-width: 700px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+#shipping-options h2 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+#shipping-select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #fdfdfd;
+  appearance: none;
+}
+
+/* Total */
+#cart-total {
+  width: 100%;
+  max-width: 700px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: right;
+  margin-bottom: 2rem;
+}
+
+/* Botón de pago */
+#checkout-button {
+  width: 100%;
+  max-width: 700px;
+  padding: 1rem;
+  background-color: #111;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#checkout-button:hover {
+  background-color: #333;
+}
+
+/* Checkout embebido */
+#checkout {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 700px;
+}

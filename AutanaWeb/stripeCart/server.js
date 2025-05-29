@@ -5,39 +5,48 @@ const app = express();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 app.use(cors());
-app.use(express.static('public')); // carpeta que contiene tu HTML
+app.use(express.static('public'));
+app.use(express.static(__dirname)); // <-- Añade esto para servir toda la carpeta stripeCart
 app.use(express.json());
 
 app.post('/create-checkout-session', async (req, res) => {
   try {
+
+    const { items, shippingOption } = req.body;
+
+    const lineItems = items.map(item => ({
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: item.name,
+        },
+        unit_amount: Math.round(item.price * 100), // Stripe usa centavos
+      },
+      quantity: item.quantity,
+    }));
+
+    // Añadir el costo de envío
+    lineItems.push({
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: shippingOption === 'express' ? 'Envío Express' : 'Envío Estándar',
+        },
+        unit_amount: shippingOption === 'express' ? 1000 : 500,
+      },
+      quantity: 1,
+    });
+
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded',
       mode: 'payment',
-      line_items: [
-        {
-          price: 'price_1RTgpqGh171OKFHVAbr3OP5x',
-          quantity: 1,
-        },
-      ],
-      return_url: `${process.env.YOUR_DOMAIN}/return.html?session_id={CHECKOUT_SESSION_ID}`,
+      line_items: lineItems,
+      return_url: `${process.env.YOUR_DOMAIN}/checkout/return.html?session_id={CHECKOUT_SESSION_ID}`,
     });
 
-    res.send({ clientSecret: session.client_secret });
+    res.json({ clientSecret: session.client_secret });
   } catch (error) {
     console.error('Error creating session:', error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/session-status', async (req, res) => {
-  try {
-    const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
-
-    res.send({
-      status: session.status,
-      customer_email: session.customer_details.email,
-    });
-  } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });

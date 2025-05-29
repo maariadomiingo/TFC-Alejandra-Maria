@@ -14,7 +14,7 @@
     });
 
     function goToCart() {
-  window.location.href = "../stripeCart/checkout/checkout.html";
+  window.location.href = "../cart/cart.html";
 }
 document.querySelectorAll('.favorite-btn').forEach(btn => {
   btn.addEventListener('click', async () => {
