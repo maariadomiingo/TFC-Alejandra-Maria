@@ -13,9 +13,10 @@ function loadCart() {
         .then(products => {
             cart = products.map(p => ({
                 id: p.id,
-                name: p.nombre,
-                price: parseFloat(p.precio),
-                quantity: 1, // Puedes mejorar esto para manejar cantidades reales
+                name: p.nombre, // <-- nombre de la BBDD
+                price: parseFloat(p.precio_stripe), // <-- precio_stripe de Stripe
+                currency: p.moneda_stripe, // <-- moneda_stripe
+                quantity: 1,
                 stripe_price_id: p.stripe_price_id
             }));
             updateCartDisplay();
@@ -32,7 +33,7 @@ function updateCartDisplay() {
         subtotal += itemTotal;
         cartItemsDiv.innerHTML += `
             <div>
-                ${item.name} - $${item.price.toFixed(2)} x ${item.quantity} = $${itemTotal.toFixed(2)}
+                ${item.name} - $${item.price.toFixed(2)} ${item.currency} x ${item.quantity} = $${itemTotal.toFixed(2)} ${item.currency}
             </div>
         `;
     });

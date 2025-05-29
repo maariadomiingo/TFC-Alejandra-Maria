@@ -7,8 +7,8 @@ if (!isset($_SESSION['cart'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $productId = (int)$_POST['product_id'];
-    // Puedes manejar cantidades si lo deseas
     $_SESSION['cart'][] = $productId;
+    error_log('Carrito tras añadir: ' . print_r($_SESSION['cart'], true)); // <-- Añade esto
     header('Location: cart.html');
     exit;
 }
