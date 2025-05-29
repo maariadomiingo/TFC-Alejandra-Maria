@@ -156,5 +156,35 @@ input:focus {
     display: block;
     height: 1rem; 
   }
-  
+  /* Ajustes específicos para la contraseña */
+.password-group {
+  position: relative;
+}
+
+.password-group input {
+  padding-left: 40px;  /* deja espacio para el candado */
+  padding-right: 40px; /* deja espacio para el ojo */
+  box-sizing: border-box;
+}
+
+.lock-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none; /* para que no interfiera al click */
+  font-size: 18px;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 18px;
+}
+
 

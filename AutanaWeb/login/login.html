@@ -26,27 +26,29 @@
 
           <form id="loginForm">
             <div class="form-group">
-              <input id="email" placeholder="Correo electrónico" />
+              <input id="email" placeholder="Email" />
               <i class="fas fa-envelope"></i>
             </div>
             <span class="error-message" id="emailError"></span>
 
-            <div class="form-group">
-              <input id="password" placeholder="Contraseña" />
-              <i class="fas fa-lock"></i>
-            </div>
+            <div class="form-group password-group">
+  <input id="password" type="password" placeholder="Password" />
+  <i id="togglePassword" class="fas fa-eye toggle-icon"></i>
+</div>
+
             <span class="error-message" id="passwordError"></span>
 
-            <button type="submit" class="btn">INICIAR SESIÓN</button>
-            <button type="submit" class="btn google-btn">
-              INICIAR SESIÓN CON GOOGLE
-            </button>
+            <button type="submit" class="btn">Sign In</button>
+<button type="submit" class="btn google-btn">
+  Sign in with Google
+</button>
 
-            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+<a href="#" class="forgot-password">Forgot your password?</a>
 
-            <a href="../registro/registro.html" class="forgot-password">Crear cuenta</a>
+<a href="../registro/registro.html" class="forgot-password">Sign Up</a>
 
-            <a href="#" class="forgot-password">Area Admin</a>
+<a href="#" class="forgot-password">Admin Area</a>
+
           </form>
         </div>
       </div>

@@ -1,9 +1,15 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_name']);
+$username = $isLoggedIn ? $_SESSION['user_name'] : '';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="../home/index.css">
   <!-- <link rel="stylesheet" href="../css/footer.css"> -->
   <title>Responsive Navbar</title>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -29,18 +35,38 @@
 
       <!-- Desktop Menu -->
       <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
-        <li><a href="../collection/collection.html" class="hover:text-black">Collection</a></li>
+        <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
         <li><a href="#" class="hover:text-black">Our Mission</a></li>
         <li><a href="#" class="hover:text-black">Behind the threads</a></li>
       </ul>
 
       <!-- Icons -->
       <div class="flex items-center space-x-4">
-        <button aria-label="Login">
-          <a href="../login/login.html" aria-label="Login">
-            <i data-lucide="user" class="w-6 h-6 text-gray-700 hover:text-black"></i>
-        </a>
-        </button>
+    <?php if ($isLoggedIn): ?>
+  <div class="relative" x-data="{ open: false }">
+    <button @click="open = !open" class="flex items-center space-x-2 text-gray-700 hover:text-black">
+      <i data-lucide="user" class="w-6 h-6"></i>
+      <span><?php echo htmlspecialchars($username); ?></span>
+    </button>
+
+    <!-- Dropdown menu (visible only when 'open' is true) -->
+    <div x-show="open" @click.away="open = false" x-transition
+         class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+      <a href="../homeUser/editar-perfil.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Edit Profile</a>
+      <a href="../homeUser/compras.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Purchases</a>
+      <a href="../homeUser/favoritos.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Favorites</a>
+      <a href="../homeUser/logout.php" class="block px-4 py-2 text-red-500 hover:bg-gray-100">Log Out</a>
+    </div>
+  </div>
+<?php else: ?>
+  <button aria-label="Login">
+    <a href="../login/login.html" aria-label="Login">
+      <i data-lucide="user" class="w-6 h-6 text-gray-700 hover:text-black"></i>
+    </a>
+  </button>
+<?php endif; ?>
+
+
         <button aria-label="Cart" onclick="goToCart()">
           <i data-lucide="shopping-cart" class="w-6 h-6 text-gray-700 hover:text-black"></i>
         </button>
@@ -69,7 +95,6 @@
         
         <div class="content-overlay">
           <h1 class="title">Made in Amazonas</h1>
-
             <h2 class="subtitle">Crafted by Heart, Guided by Heritage</h2>
             <p class="description">
                 An intimate look at how each garment is brought to life by our founder and designer. 
@@ -84,29 +109,32 @@
 
     <div class="flecha">See more <span class="arrow">➔</span></div>
 
-    <div class="outfit-container">
-      <div class="outfit">
-        <img src="../img/outfit1.png" alt="">
-        Nombre de la prenda <br>
-        descripción <br>
-        <span>$precio</span>
-      </div>
-    
-      <div class="outfit">
-        <img src="../img/outfit2.png" alt="">
-        Nombre de la prenda <br>
-        descripción <br>
-        <span>$precio</span>
-      </div>
-    
-      <div class="outfit">
-        <img src="../img/outift3.png" alt="">
-        Nombre de la prenda <br>
-        descripción <br>
-        <span>$precio</span>
-      </div>
-    </div>    
-  </section>
+   <div class="outfit-container">
+  <div class="outfit" data-product-id="1">
+    <img src="../img/outfit1.png" alt="">
+    Nombre de la prenda <br>
+    descripción <br>
+    <span>$precio</span>
+    <button class="favorite-btn" aria-label="Agregar a favoritos">♡</button>
+  </div>
+
+  <div class="outfit" data-product-id="2">
+    <img src="../img/outfit2.png" alt="">
+    Nombre de la prenda <br>
+    descripción <br>
+    <span>$precio</span>
+    <button class="favorite-btn" aria-label="Agregar a favoritos">♡</button>
+  </div>
+
+  <div class="outfit" data-product-id="3">
+    <img src="../img/outfit3.png" alt="">
+    Nombre de la prenda <br>
+    descripción <br>
+    <span>$precio</span>
+    <button class="favorite-btn" aria-label="Agregar a favoritos">♡</button>
+  </div>
+</div>
+
 
   <section class="ourMission">
     <img src="../img/OurMission.jpg" alt="">
@@ -154,7 +182,7 @@
     <!-- </section> -->
 
 
-<script src="home.js"></script>
+<script src="../home/home.js"></script>
 
 </body>
 <footer class="bg-white py-8 border-t border-gray-200">

@@ -45,6 +45,13 @@ CREATE TABLE IF NOT EXISTS preorders (
     estado VARCHAR(50) DEFAULT 'pendiente',
     fecha_preorden TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE IF NOT EXISTS favoritos (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    producto_id INT NOT NULL REFERENCES productos(id) ON DELETE CASCADE,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(usuario_id, producto_id)  -- Para evitar duplicados
+);
     ";
     $pdo->exec($crearTabla);
 

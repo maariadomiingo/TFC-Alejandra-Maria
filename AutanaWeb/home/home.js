@@ -16,3 +16,26 @@
     function goToCart() {
   window.location.href = "../stripeCart/checkout/checkout.html";
 }
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const outfitDiv = btn.closest('.outfit');
+    const productId = outfitDiv.getAttribute('data-product-id');
+
+    try {
+      const response = await fetch('/api/favoritos_toggle.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ producto_id: productId })
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        btn.textContent = data.favorito ? '❤️' : '♡';
+      } else if (data.error) {
+        alert(data.error);
+      }
+    } catch (e) {
+      alert('Error de conexión con el servidor.');
+    }
+  });
+});
