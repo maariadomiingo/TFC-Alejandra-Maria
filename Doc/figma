@@ -1,1 +1,5 @@
 https://www.figma.com/board/SMU95bEOd15LTBIQY8urRp/plantilla-anterior?t=LdmIevtNMgQ7bBo1-0
+
+para correr el backend y el carrito de compra
+meterse en la carpeta stripe cart  y ejecutar 
+node server.js
