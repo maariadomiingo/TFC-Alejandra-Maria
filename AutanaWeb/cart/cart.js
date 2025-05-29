@@ -3,17 +3,23 @@ let shippingCost = 5.00; // Costo por defecto
 
 document.addEventListener('DOMContentLoaded', () => {
     loadCart();
-    updateCartDisplay();
     document.getElementById('shipping-select').addEventListener('change', updateShipping);
     document.getElementById('checkout-button').addEventListener('click', proceedToCheckout);
 });
 
 function loadCart() {
-    // Simula cargar el carrito desde el almacenamiento local o una API
-    cart = [
-        { id: 1, name: "Producto 1", price: 20.00, quantity: 1 },
-        { id: 2, name: "Producto 2", price: 30.00, quantity: 2 }
-    ];
+    fetch('get_cart.php')
+        .then(res => res.json())
+        .then(products => {
+            cart = products.map(p => ({
+                id: p.id,
+                name: p.nombre,
+                price: parseFloat(p.precio),
+                quantity: 1, // Puedes mejorar esto para manejar cantidades reales
+                stripe_price_id: p.stripe_price_id
+            }));
+            updateCartDisplay();
+        });
 }
 
 function updateCartDisplay() {
@@ -45,20 +51,22 @@ function updateShipping(event) {
 }
 
 function proceedToCheckout() {
-    fetch('http://localhost:4242/create-checkout-session', { // <-- URL absoluta
+    fetch('http://localhost:4242/create-checkout-session', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            items: cart,
+            items: cart.map(item => ({
+                price: item.stripe_price_id,
+                quantity: item.quantity
+            })),
             shippingOption: document.getElementById('shipping-select').value
         }),
     })
     .then(response => response.json())
     .then(data => {
         if (data.clientSecret) {
-            // Usar Embedded Checkout
             const stripe = Stripe("pk_test_51RSxu8Gh171OKFHVkMNBipKFyx92rGe7AUBVdYZBss9qNFE9TDONdTCjVJL1LWGm6mz3S7tosSuuB0MKAq8AWHHZ00qLVGD4l6");
             stripe.initEmbeddedCheckout({
                 clientSecret: data.clientSecret

@@ -14,7 +14,7 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // 3. Crear tablas
+    // 3. Crear tablas (ahora productos tiene los nuevos campos)
     $crearTablas = "
     CREATE TABLE IF NOT EXISTS Usuarios (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -35,8 +35,10 @@ try {
     CREATE TABLE IF NOT EXISTS productos (
         id INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(100) NOT NULL,
-        descripcion TEXT,
+        precio DECIMAL(10,2) NOT NULL,
         imagen_url TEXT,
+        stripe_product_id VARCHAR(255),
+        stripe_price_id VARCHAR(255),
         disponible BOOLEAN DEFAULT TRUE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
@@ -84,19 +86,63 @@ try {
     }
 
     // 5. Insertar productos outfit1...outfit6 si no existen
-    $checkProd = $pdo->prepare("SELECT COUNT(*) FROM productos WHERE nombre = :nombre");
-    $insertProd = $pdo->prepare("INSERT INTO productos (nombre, descripcion, imagen_url) VALUES (:nombre, :descripcion, :imagen_url)");
-    for ($i = 1; $i <= 6; $i++) {
-        $nombre = "outfit$i";
-        $descripcion = "Descripción del outfit $i";
-        $imagen_url = "https://via.placeholder.com/150?text=outfit$i";
-        $checkProd->execute([':nombre' => $nombre]);
+    $products = [
+        [
+            'nombre' => 'Prenda 1 - Vestido Tradicional',
+            'precio' => 120,
+            'imagen_url' => '../img/outfit1.png',
+            'stripe_product_id' => 'prod_SOTnUnChSmNeCF',
+            'stripe_price_id' => 'price_1RTgpqGh171OKFHVAbr3OP5x'
+        ],
+        [
+            'nombre' => 'Prenda 2 - Blusa Bordada',
+            'precio' => 150,
+            'imagen_url' => '../img/outfit2.png',
+            'stripe_product_id' => 'prod_SOtVrnssa3LOoi',
+            'stripe_price_id' => 'price_1RU5iXGh171OKFHVvjSFRfWL'
+        ],
+        [
+            'nombre' => 'Prenda 3 - Pantalón Artesanal',
+            'precio' => 140,
+            'imagen_url' => '../img/outfit3.avif',
+            'stripe_product_id' => 'prod_SOtyJdoQypITGL',
+            'stripe_price_id' => 'price_1RU6AlGh171OKFHVfmGHgjq6'
+        ],
+        [
+            'nombre' => 'Prenda 4 - Chaleco Tejido',
+            'precio' => 110,
+            'imagen_url' => '../img/outfit4.jpg',
+            'stripe_product_id' => 'prod_SOu0xHcpMEcP0x',
+            'stripe_price_id' => 'price_1RU6CAGh171OKFHVzVtsz851'
+        ],
+        [
+            'nombre' => 'Prenda 5 - Falda Plisada',
+            'precio' => 130,
+            'imagen_url' => '../img/outfit5.webp',
+            'stripe_product_id' => 'prod_SOu0hIve6FzxNT',
+            'stripe_price_id' => 'price_1RU6CnGh171OKFHVGlhcVxFS'
+        ],
+        [
+            'nombre' => 'Prenda 6 - Camisa de Lino',
+            'precio' => 135,
+            'imagen_url' => '../img/outift3.png',
+            'stripe_product_id' => 'prod_SOu1LVbogt7374',
+            'stripe_price_id' => 'price_1RU6DKGh171OKFHVSNQmAdFy'
+        ],
+    ];
+
+    $checkProd = $pdo->prepare("SELECT COUNT(*) FROM productos WHERE stripe_product_id = :stripe_product_id");
+    $insertProd = $pdo->prepare("INSERT INTO productos (nombre, precio, imagen_url, stripe_product_id, stripe_price_id) VALUES (:nombre, :precio, :imagen_url, :stripe_product_id, :stripe_price_id)");
+    foreach ($products as $producto) {
+        $checkProd->execute([':stripe_product_id' => $producto['stripe_product_id']]);
         $exists = $checkProd->fetchColumn();
         if ($exists == 0) {
             $insertProd->execute([
-                ':nombre' => $nombre,
-                ':descripcion' => $descripcion,
-                ':imagen_url' => $imagen_url
+                ':nombre' => $producto['nombre'],
+                ':precio' => $producto['precio'],
+                ':imagen_url' => $producto['imagen_url'],
+                ':stripe_product_id' => $producto['stripe_product_id'],
+                ':stripe_price_id' => $producto['stripe_price_id']
             ]);
         }
     }
@@ -104,4 +150,3 @@ try {
     // Lanza la excepción para que el archivo principal la capture y devuelva JSON
     throw $e;
 }
-?>

@@ -1,15 +1,16 @@
 <?php
 // product.php
 session_start();
+require_once __DIR__ . '/../server/db_config.php';
 
 $isLoggedIn = isset($_SESSION['user_name']);
 $username = $isLoggedIn ? $_SESSION['user_name'] : '';
 
 // Obtener el id del producto de la URL
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    // Si no hay id o no es válido, redirige o muestra error
-    header("Location: ../collection/collection.php");
-    exit;
+  // Si no hay id o no es válido, redirige o muestra error
+  header("Location: ../collection/collection.php");
+  exit;
 }
 
 $productId = (int)$_GET['id'];
@@ -17,6 +18,7 @@ $productId = (int)$_GET['id'];
 // Array de productos
 $products = [
   1 => [
+    'db_id' => 1,
     'name' => 'Prenda 1 - Vestido Tradicional',
     'price' => '$120',
     'image' => '../img/outfit1.png',
@@ -27,6 +29,7 @@ $products = [
     'story' => 'María, una artesana de la comunidad, preserva la cultura ancestral transmitida por sus antepasados en cada puntada de este vestido.'
   ],
   2 => [
+    'db_id' => 2,
     'name' => 'Prenda 2 - Blusa Bordada',
     'price' => '$150',
     'image' => '../img/outfit2.png',
@@ -37,6 +40,7 @@ $products = [
     'story' => 'La blusa lleva la historia de Ana, quien aprendió el arte del bordado a través de generaciones en su familia indígena.'
   ],
   3 => [
+    'db_id' => 3,
     'name' => 'Prenda 3 - Pantalón Artesanal',
     'price' => '$140',
     'image' => '../img/outfit3.avif',
@@ -47,6 +51,7 @@ $products = [
     'story' => 'Este pantalón cuenta la historia de José, un tejedor comprometido con la sostenibilidad y el arte tradicional.'
   ],
   4 => [
+    'db_id' => 4,
     'name' => 'Prenda 4 - Chaleco Tejido',
     'price' => '$110',
     'image' => '../img/outfit4.jpg',
@@ -57,6 +62,7 @@ $products = [
     'story' => 'Cada hilo lleva la dedicación de Carmen, artesana que mezcla tradición y naturaleza en su trabajo.'
   ],
   5 => [
+    'db_id' => 5,
     'name' => 'Prenda 5 - Falda Plisada',
     'price' => '$130',
     'image' => '../img/outfit5.webp',
@@ -67,6 +73,7 @@ $products = [
     'story' => 'La falda es un tributo a Lucía, una joven artesana que transmite sus raíces a través del arte textil.'
   ],
   6 => [
+    'db_id' => 6,
     'name' => 'Prenda 6 - Camisa de Lino',
     'price' => '$135',
     'image' => '../img/outift3.png',
@@ -80,18 +87,25 @@ $products = [
 
 // Validar que el producto exista
 if (!array_key_exists($productId, $products)) {
-    echo "<h2>Producto no encontrado.</h2>";
-    exit;
+  echo "<h2>Producto no encontrado.</h2>";
+  exit;
 }
 
 $product = $products[$productId];
+
+// --- Obtener el producto de la BBDD ---
+$stmt = $pdo->prepare("SELECT * FROM productos WHERE id = ?");
+$stmt->execute([$productId]);
+$productFromDB = $stmt->fetch(PDO::FETCH_ASSOC);
+// ---------------------------------------
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../home/index.css">
   <link rel="stylesheet" href="../vistaProducto/producto.css" />
   <!-- <link rel="stylesheet" href="../css/footer.css"> -->
@@ -110,12 +124,13 @@ $product = $products[$productId];
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-white">
 
   <nav class="px-6 py-4 shadow-md">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-       <img src="../img/logoSinFondo.png" alt="" class="logo">
+      <img src="../img/logoSinFondo.png" alt="" class="logo">
 
       <!-- Desktop Menu -->
       <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
@@ -126,29 +141,29 @@ $product = $products[$productId];
 
       <!-- Icons -->
       <div class="flex items-center space-x-4">
-    <?php if ($isLoggedIn): ?>
-  <div class="relative" x-data="{ open: false }">
-    <button @click="open = !open" class="flex items-center space-x-2 text-gray-700 hover:text-black">
-      <i data-lucide="user" class="w-6 h-6"></i>
-      <span><?php echo htmlspecialchars($username); ?></span>
-    </button>
+        <?php if ($isLoggedIn): ?>
+          <div class="relative" x-data="{ open: false }">
+            <button @click="open = !open" class="flex items-center space-x-2 text-gray-700 hover:text-black">
+              <i data-lucide="user" class="w-6 h-6"></i>
+              <span><?php echo htmlspecialchars($username); ?></span>
+            </button>
 
-    <!-- Dropdown menu (visible only when 'open' is true) -->
-    <div x-show="open" @click.away="open = false" x-transition
-         class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
-      <a href="../homeUser/editar-perfil.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Edit Profile</a>
-      <a href="../homeUser/compras.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Purchases</a>
-      <a href="../homeUser/favoritos.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Favorites</a>
-      <a href="../homeUser/logout.php" class="block px-4 py-2 text-red-500 hover:bg-gray-100">Log Out</a>
-    </div>
-  </div>
-<?php else: ?>
-  <button aria-label="Login">
-    <a href="../login/login.html" aria-label="Login">
-      <i data-lucide="user" class="w-6 h-6 text-gray-700 hover:text-black"></i>
-    </a>
-  </button>
-<?php endif; ?>
+            <!-- Dropdown menu (visible only when 'open' is true) -->
+            <div x-show="open" @click.away="open = false" x-transition
+              class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+              <a href="../homeUser/editar-perfil.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Edit Profile</a>
+              <a href="../homeUser/compras.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Purchases</a>
+              <a href="../homeUser/favoritos.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Favorites</a>
+              <a href="../homeUser/logout.php" class="block px-4 py-2 text-red-500 hover:bg-gray-100">Log Out</a>
+            </div>
+          </div>
+        <?php else: ?>
+          <button aria-label="Login">
+            <a href="../login/login.html" aria-label="Login">
+              <i data-lucide="user" class="w-6 h-6 text-gray-700 hover:text-black"></i>
+            </a>
+          </button>
+        <?php endif; ?>
 
 
         <button aria-label="Cart" onclick="goToCart()">
@@ -171,51 +186,57 @@ $product = $products[$productId];
   </nav>
 
   <div class="product-page">
-      <section class="product-card" aria-label="Detalle del producto <?php echo htmlspecialchars($product['name']); ?>">
-    <div class="product-image" role="img" aria-label="Imagen de <?php echo htmlspecialchars($product['name']); ?>">
-      <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" />
-    </div>
-
-    <div class="product-details">
-      <h1><?php echo htmlspecialchars($product['name']); ?></h1>
-      <div class="product-price"><?php echo htmlspecialchars($product['price']); ?></div>
-
-      <div>
-        <h2 class="section-title">Descripción</h2>
-        <p><?php echo htmlspecialchars($product['description']); ?></p>
+    <section class="product-card" aria-label="Detalle del producto <?php echo htmlspecialchars($product['name']); ?>">
+      <div class="product-image" role="img" aria-label="Imagen de <?php echo htmlspecialchars($product['name']); ?>">
+        <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" />
       </div>
 
-      <div>
-        <h2 class="section-title">Inspiración</h2>
-        <p><?php echo htmlspecialchars($product['inspiration']); ?></p>
+      <div class="product-details">
+        <h1><?php echo htmlspecialchars($product['name']); ?></h1>
+        <div class="product-price"><?php echo htmlspecialchars($product['price']); ?></div>
+
+        <div>
+          <h2 class="section-title">Descripción</h2>
+          <p><?php echo htmlspecialchars($product['description']); ?></p>
+        </div>
+
+        <div>
+          <h2 class="section-title">Inspiración</h2>
+          <p><?php echo htmlspecialchars($product['inspiration']); ?></p>
+        </div>
+
+        <div>
+          <h2 class="section-title">Material</h2>
+          <p><?php echo htmlspecialchars($product['material']); ?></p>
+        </div>
+
+        <div>
+          <h2 class="section-title">Horas de trabajo</h2>
+          <p><?php echo htmlspecialchars($product['work_hours']); ?></p>
+        </div>
+
+        <div>
+          <h2 class="section-title">Historia inspiradora</h2>
+          <p><?php echo htmlspecialchars($product['story']); ?></p>
+        </div>
       </div>
 
-      <div>
-        <h2 class="section-title">Material</h2>
-        <p><?php echo htmlspecialchars($product['material']); ?></p>
-      </div>
+      <form method="POST" action="../cart/add_to_cart.php">
+        <input type="hidden" name="product_id" value="<?php echo $product['db_id']; ?>">
+        <button type="submit" class="buy-button">
+          Comprar
+        </button>
+      </form>
 
-      <div>
-        <h2 class="section-title">Horas de trabajo</h2>
-        <p><?php echo htmlspecialchars($product['work_hours']); ?></p>
-      </div>
-
-      <div>
-        <h2 class="section-title">Historia inspiradora</h2>
-        <p><?php echo htmlspecialchars($product['story']); ?></p>
-      </div>
-    </div>
-
-    <form method="POST" action="../cart/cart.html">
-  <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
-  <button type="submit" class="buy-button">
-    Comprar
-  </button>
-</form>
-
-  </section>
+    </section>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log("Producto desde la BBDD:", <?php echo json_encode($productFromDB); ?>);
+    });
+  </script>
 
 </body>
+
 </html>
