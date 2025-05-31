@@ -32,8 +32,18 @@ function updateCartDisplay() {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
         cartItemsDiv.innerHTML += `
-            <div>
-                ${item.name} - $${item.price.toFixed(2)} ${item.currency} x ${item.quantity} = $${itemTotal.toFixed(2)} ${item.currency}
+            <div class="cart-item" style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                <span style="flex:1;">
+                    ${item.name} - $${item.price.toFixed(2)} ${item.currency} x ${item.quantity} = $${itemTotal.toFixed(2)} ${item.currency}
+                </span>
+                <span class="delete-icon" style="cursor:pointer;" onclick="removeFromCart(${item.id})" title="Eliminar">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
+                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                    </svg>
+                </span>
             </div>
         `;
     });
@@ -44,6 +54,19 @@ function updateCartDisplay() {
         <p>Envío: $${shippingCost.toFixed(2)}</p>
         <p>Total: $${total.toFixed(2)}</p>
     `;
+}
+
+// Función para eliminar producto del carrito
+function removeFromCart(productId) {
+    fetch('remove_from_cart.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ product_id: productId })
+    })
+    .then(res => res.json())
+    .then(data => {
+        loadCart(); // Recarga el carrito tras eliminar
+    });
 }
 
 function updateShipping(event) {
