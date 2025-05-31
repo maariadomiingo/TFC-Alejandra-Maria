@@ -20,9 +20,9 @@ app.post('/create-checkout-session', async (req, res) => {
         product_data: {
           name: item.name,
         },
-        unit_amount: Math.round(item.price * 100), // Stripe usa centavos
+        unit_amount: Math.round(parseFloat(item.price) * 100), // Ensure price is a number
       },
-      quantity: item.quantity,
+      quantity: parseInt(item.quantity, 10), // Ensure quantity is an integer
     }));
 
     // Añadir el costo de envío
@@ -46,7 +46,7 @@ app.post('/create-checkout-session', async (req, res) => {
 
     res.json({ clientSecret: session.client_secret });
   } catch (error) {
-    console.error('Error creating session:', error);
+    console.error('Detailed error:', error);
     res.status(500).json({ error: error.message });
   }
 });

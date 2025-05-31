@@ -51,35 +51,33 @@ function updateShipping(event) {
     updateCartDisplay();
 }
 
-function proceedToCheckout() {
-    fetch('http://localhost:4242/create-checkout-session', {
+async function proceedToCheckout() {
+    const shippingOption = document.getElementById('shipping-select').value;
+    const response = await fetch('http://localhost:4242/create-checkout-session', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             items: cart.map(item => ({
-                price: item.stripe_price_id,
-                quantity: item.quantity
+                name: item.name,
+                price: parseFloat(item.price),
+                quantity: parseInt(item.quantity, 10),
             })),
-            shippingOption: document.getElementById('shipping-select').value
+            shippingOption: shippingOption
         }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.clientSecret) {
-            const stripe = Stripe("pk_test_51RSxu8Gh171OKFHVkMNBipKFyx92rGe7AUBVdYZBss9qNFE9TDONdTCjVJL1LWGm6mz3S7tosSuuB0MKAq8AWHHZ00qLVGD4l6");
-            stripe.initEmbeddedCheckout({
-                clientSecret: data.clientSecret
-            }).then(checkout => {
-                checkout.mount('#checkout');
-            });
-        } else {
-            alert('No se recibió clientSecret del servidor');
-        }
-    })
-    .catch(error => {
-        alert('Error: ' + error);
-        console.error('Error:', error);
     });
+
+    const data = await response.json();
+
+    if (data.clientSecret) {
+        const stripe = Stripe("pk_test_51RSxu8Gh171OKFHVkMNBipKFyx92rGe7AUBVdYZBss9qNFE9TDONdTCjVJL1LWGm6mz3S7tosSuuB0MKAq8AWHHZ00qLVGD4l6");
+        stripe.initEmbeddedCheckout({
+            clientSecret: data.clientSecret
+        }).then(checkout => {
+            checkout.mount('#checkout');
+        });
+    } else {
+        alert('No se recibió clientSecret del servidor');
+    }
 }
