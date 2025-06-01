@@ -32,11 +32,14 @@ function updateCartDisplay() {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
         cartItemsDiv.innerHTML += `
-            <div class="cart-item" style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-                <span style="flex:1;">
-                    ${item.name} - $${item.price.toFixed(2)} ${item.currency} x ${item.quantity} = $${itemTotal.toFixed(2)} ${item.currency}
-                </span>
-                <span class="delete-icon" style="cursor:pointer;" onclick="removeFromCart(${item.id})" title="Eliminar">
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h3>${item.name}</h3>
+                </div>
+                <div class="cart-item-price">
+                     $${itemTotal.toFixed(2)} ${item.currency}
+                </div>
+                <span class="delete-icon" style="cursor:pointer;margin-left:10px;" onclick="removeFromCart(${item.id})" title="Eliminar">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <polyline points="3 6 5 6 21 6"></polyline>
                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
