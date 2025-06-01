@@ -1,5 +1,5 @@
 let cart = [];
-let shippingCost = 5.00; // Costo por defecto
+let shippingCost = 70.00; // Por defecto Europa
 
 document.addEventListener('DOMContentLoaded', () => {
     loadCart();
@@ -69,8 +69,9 @@ function removeFromCart(productId) {
     });
 }
 
-function updateShipping(event) {
-    shippingCost = event.target.value === 'express' ? 10.00 : 5.00;
+function updateShipping() {
+    const shippingSelect = document.getElementById('shipping-select');
+    shippingCost = shippingSelect.value === 'express' ? 200.00 : 70.00;
     updateCartDisplay();
 }
 
@@ -83,8 +84,7 @@ async function proceedToCheckout() {
         },
         body: JSON.stringify({
             items: cart.map(item => ({
-                name: item.name,
-                price: parseFloat(item.price),
+                stripe_price_id: item.stripe_price_id, // <-- price_id de Stripe
                 quantity: parseInt(item.quantity, 10),
             })),
             shippingOption: shippingOption

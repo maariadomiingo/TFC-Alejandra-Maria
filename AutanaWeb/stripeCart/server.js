@@ -6,34 +6,28 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 app.use(cors());
 app.use(express.static('public'));
-app.use(express.static(__dirname)); // <-- Añade esto para servir toda la carpeta stripeCart
+app.use(express.static(__dirname));
 app.use(express.json());
+
+// PON AQUÍ TUS price_id REALES DE STRIPE
+const SHIPPING_PRICE_IDS = {
+  standard: 'price_1RURyWGh171OKFHV61Dv2THH', // Europa 
+  express: 'price_1RVDiQGh171OKFHVpO4kjb26',      // Fuera de Europa 
+};
 
 app.post('/create-checkout-session', async (req, res) => {
   try {
-
     const { items, shippingOption } = req.body;
 
+    // Los productos deben venir con stripe_price_id
     const lineItems = items.map(item => ({
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: item.name,
-        },
-        unit_amount: Math.round(parseFloat(item.price) * 100), // Ensure price is a number
-      },
-      quantity: parseInt(item.quantity, 10), // Ensure quantity is an integer
+      price: item.stripe_price_id, // Usar el price_id de Stripe del producto
+      quantity: parseInt(item.quantity, 10),
     }));
 
-    // Añadir el costo de envío
+    // Añadir el envío como otro producto usando su price_id
     lineItems.push({
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: shippingOption === 'express' ? 'Envío Express' : 'Envío Estándar',
-        },
-        unit_amount: shippingOption === 'express' ? 1000 : 500,
-      },
+      price: SHIPPING_PRICE_IDS[shippingOption === 'express' ? 'express' : 'standard'],
       quantity: 1,
     });
 
