@@ -15,21 +15,20 @@ body {
   align-items: center;
 }
 
-/* Título del carrito */
-h1 {
-  font-size: 2rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
-  letter-spacing: 1px;
-  color: #111;
-}
 
+.cart-divider {
+  width: 70%;
+  background-color: #686868;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 /* Contenedor de ítems */
 #cart-items {
-  width: 100%;
-  max-width: 700px;
+  width: 70%;
   background-color: #fff;
-  border-radius: 16px;
+  border-radius: 0px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   margin-bottom: 2rem;

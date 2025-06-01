@@ -37,7 +37,7 @@ function updateCartDisplay() {
                     ${item.name} - $${item.price.toFixed(2)} ${item.currency} x ${item.quantity} = $${itemTotal.toFixed(2)} ${item.currency}
                 </span>
                 <span class="delete-icon" style="cursor:pointer;" onclick="removeFromCart(${item.id})" title="Eliminar">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <polyline points="3 6 5 6 21 6"></polyline>
                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
                         <line x1="10" y1="11" x2="10" y2="17"></line>
