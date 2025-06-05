@@ -36,6 +36,7 @@ try {
         id INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(100) NOT NULL,
         precio DECIMAL(10,2) NOT NULL,
+        descripcion TEXT,
         imagen_url TEXT,
         stripe_product_id VARCHAR(255),
         stripe_price_id VARCHAR(255),

@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const tallaTopInput = document.getElementById("talla_top");
   const tallaBottomInput = document.getElementById("talla_bottom");
   const direccionInput = document.getElementById("direccion_envio");
+  const form = document.querySelector("form");
+
+  let isPasswordVerified = false; // Mover fuera del submit para mantener estado
 
   function validarCorreo(correo) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -11,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function mostrarError(input, mensaje) {
-    eliminarError(input); // Eliminar errores previos
+    eliminarError(input);
     const error = document.createElement("p");
     error.className = "text-red-500 text-sm mt-1";
     error.innerText = mensaje;
@@ -27,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Eventos de validación en tiempo real
+  // Validaciones en tiempo real
   correoInput.addEventListener("input", () => {
     eliminarError(correoInput);
     if (!validarCorreo(correoInput.value)) {
@@ -63,8 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Validación completa al enviar
-  document.querySelector("form").addEventListener("submit", function (e) {
+  // Envío del formulario
+  form.addEventListener("submit", function (e) {
     let errores = false;
 
     eliminarError(correoInput);
@@ -99,6 +102,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (errores) {
       e.preventDefault();
+    } else if (!isPasswordVerified) {
+      e.preventDefault();
+      openCurrentPasswordModal();
     }
   });
+
+  // Funciones del modal de verificación de contraseña
+  window.openCurrentPasswordModal = function () {
+    document.getElementById('currentPasswordModal').classList.remove('hidden');
+  }
+
+  window.closeCurrentPasswordModal = function () {
+    document.getElementById('currentPasswordModal').classList.add('hidden');
+    document.getElementById('currentPasswordError').classList.add('hidden');
+    document.getElementById('current_password_input').value = '';
+  }
+
+  window.validateCurrentPassword = function () {
+    const entered = document.getElementById('current_password_input').value;
+    const currentPasswordCorrect = "123456"; // Aquí debes integrar con el servidor
+
+    if (entered === currentPasswordCorrect) {
+      isPasswordVerified = true;
+      closeCurrentPasswordModal();
+      form.submit();
+    } else {
+      document.getElementById('currentPasswordError').classList.remove('hidden');
+    }
+  }
+
+  // Auto cierre de popup de éxito
+  const popup = document.getElementById('successPopup');
+  if (popup) {
+    setTimeout(() => popup.remove(), 5000);
+  }
 });
+
+function savePassword() {
+  const newPassword = document.getElementById('password').value;
+  const hiddenField = document.getElementById('hidden_password');
+
+  if (newPassword.trim().length < 6) {
+    alert("La nueva contraseña debe tener al menos 6 caracteres.");
+    return;
+  }
+
+  hiddenField.value = newPassword; // actualizar valor del campo oculto
+  toggleModal();
+}
+  // function savePassword() {
+  //   const newPassword = document.getElementById('password').value;
+  //   if (newPassword.trim() !== '') {
+  //     const hiddenField = document.createElement('input');
+  //     hiddenField.type = 'hidden';
+  //     hiddenField.name = 'password';
+  //     hiddenField.value = newPassword;
+
+  //     const form = document.querySelector('form');
+  //     form.appendChild(hiddenField);
+
+  //     toggleModal();
+  //   }
+  // }
+   function closeSuccessPopup() {
+    const popup = document.getElementById('successPopup');
+    if (popup) popup.remove();
+  }
+
+  // Auto-close after 5 seconds
+  window.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('successPopup');
+    if (popup) {
+      setTimeout(() => popup.remove(), 5000);
+    }
+  });

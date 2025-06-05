@@ -1,0 +1,228 @@
+ @font-face {
+  font-family: 'Plantagenet';
+  src: url('../font/plantc.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+ :root {
+            --primary: #3e6b00;
+            --secondary: #b17900;
+            --light: #FEFAE0;
+            --dark: #1A1A1A;
+            --accent: #c7480c;
+        }
+        
+        body {
+            font-family: 'Plantagenet';
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Plantagenet';
+            font-weight: 500;
+        }
+        
+        nav {
+            background-color: white;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+      .logo {
+  width: 150px;    
+  height: auto;     
+}
+        
+        .video-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .content-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 3rem;
+            max-width: 800px;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 80px;
+        }
+        
+        .title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            font-style: italic;
+        }
+        
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .mission-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 1rem auto;
+        }
+        
+        .mission-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .mission-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .mission-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .mission-card p {
+            color: #555;
+        }
+        
+        .icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .culture-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .culture-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+        }
+        
+        .culture-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+        
+        .culture-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .culture-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .content-overlay {
+                padding: 2rem 1rem;
+                margin: 80px 1rem 0;
+            }
+        }
