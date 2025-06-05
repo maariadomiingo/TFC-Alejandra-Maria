@@ -9,22 +9,37 @@
     <script src="cart.js" defer></script>
   </head>
   <body>
-    <div class="cart-header">
-      <span class="cart-header-product">Producto</span>
-      <span class="cart-header-price">Precio</span>
+    <div class="background-shape"></div>
+    <div class="cart-container">
+      <header class="cart-topbar">
+        <!-- nav-tabs y cart-icons eliminados -->
+      </header>
+      <main class="cart-main">
+        <!-- Encabezado -->
+        <div class="cart-header">
+          <span class="cart-header-product">Product</span>
+          <span class="cart-header-price">Price</span>
+        </div>
+        <!-- Items dinámicos -->
+        <div id="cart-items"></div>
+        <!-- Línea resumen -->
+        <div class="summary-bar"></div>
+        <!-- Opciones de envío y total -->
+        <div class="cart-summary-row">
+          <div id="shipping-options">
+            <h2>Shipping options</h2>
+            <select id="shipping-select">
+              <option value="standard">Envío Europa - $70.00</option>
+              <option value="express">Envío fuera de Europa - $150.00</option>
+            </select>
+          </div>
+          <div id="cart-total"></div>
+        </div>
+        <button id="checkout-button" class="checkout-button">
+          Proceder al Pago
+        </button>
+        <div id="checkout"></div>
+      </main>
     </div>
-    <hr class="cart-divider" />
-    <div id="cart-items"></div>
-    <hr class="cart-divider" />
-    <div id="shipping-options">
-      <h2>Opciones de Envío</h2>
-      <select id="shipping-select">
-        <option value="standard">Envío Europa - $70.00</option>
-        <option value="express">Envío fuera de Europa - $150.00</option>
-      </select>
-    </div>
-    <div id="cart-total"></div>
-    <button id="checkout-button">Proceder al Pago</button>
-    <div id="checkout"></div>
   </body>
 </html>

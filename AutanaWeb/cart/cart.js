@@ -30,16 +30,21 @@ function updateCartDisplay() {
     let subtotal = 0;
 
     cart.forEach(item => {
+        // Separar título y subtítulo por el primer guion
+        const [titulo, subtitulo] = item.name.split('-').map(s => s.trim());
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
         cartItemsDiv.innerHTML += `
             <div class="cart-item">
+                <img src="${item.imagen_url}" alt="${item.name}" class="cart-item-img">
                 <div class="cart-item-info">
-                    <img src="${item.imagen_url}" alt="${item.name}" class="cart-item-img">
-                    <h3>${item.name}</h3>
+                    <div>
+                        <h3 style="margin-bottom:0.3rem;">${titulo || item.name}</h3>
+                        ${subtitulo ? `<div class="cart-item-subtitle">${subtitulo}</div>` : ''}
+                    </div>
                 </div>
                 <div class="cart-item-price">
-                    $${item.price.toFixed(2)} ${item.currency} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)} ${item.currency}
+                    $${item.price.toFixed(2)} ${item.currency} x ${item.quantity} = $${itemTotal.toFixed(2)} ${item.currency}
                 </div>
                 <span class="delete-icon" style="cursor:pointer;margin-left:10px;" onclick="removeFromCart(${item.id})" title="Eliminar">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
