@@ -68,6 +68,11 @@ function updateCartDisplay() {
 
 // Función para eliminar producto del carrito
 function removeFromCart(productId) {
+    // Elimina el producto del array cart en el frontend
+    cart = cart.filter(item => item.id !== productId);
+    updateCartDisplay(); // Actualiza la vista inmediatamente
+
+    // Luego informa al backend para mantener la sesión sincronizada
     fetch('remove_from_cart.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -75,7 +80,14 @@ function removeFromCart(productId) {
     })
     .then(res => res.json())
     .then(data => {
-        loadCart(); // Recarga el carrito tras eliminar
+        if (!data.success) {
+            // Si hubo un error, recarga el carrito desde el backend
+            loadCart();
+        }
+    })
+    .catch(() => {
+        // Si hay error de red, recarga el carrito desde el backend
+        loadCart();
     });
 }
 

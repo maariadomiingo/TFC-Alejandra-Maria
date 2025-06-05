@@ -78,7 +78,6 @@ body {
 /* Tarjeta de producto */
 .cart-item {
   background: #fff2df;
-  border-radius: 12px;
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -144,9 +143,8 @@ body {
 #shipping-options {
   width: 50%;
   min-width: 220px;
-  background-color: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #fff2df;
+  border-radius: 2px;
   padding: 1.5rem;
   align-self: flex-start;
 }
@@ -161,8 +159,8 @@ body {
   width: 80%;
   padding: 0.75rem;
   font-size: 1rem;
-  border: 1px solid #c6e3fd;
-  border-radius: 6px;
+  border: 1px solid;
+  border-radius: 5px;
   appearance: none;
   background: white;
 }
@@ -171,8 +169,8 @@ body {
 #cart-total {
   width: 50%;
   min-width: 220px;
-  background-color: #fff;
-  border-radius: 16px;
+  background-color: #fff2df;
+  border-radius: 2px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   font-size: 1.2rem;
@@ -197,7 +195,7 @@ body {
 #checkout-button,
 .checkout-button {
   align-self: flex-end;
-  background: #009cff;
+  background: #cc5b23;
   border: none;
   border-radius: 8px;
   width: 160px;
@@ -213,7 +211,8 @@ body {
 
 #checkout-button:hover,
 .checkout-button:hover {
-  background: #007acc;
+  background: #fff2df;
+  color: black;
 }
 
 #checkout {
