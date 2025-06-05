@@ -49,15 +49,18 @@ body {
   border-bottom: none;
 }
 
-.cart-item img {
-  width: 80px;
-  height: auto;
-  border-radius: 12px;
+.cart-item-img {
+  width: 60px;
+  height: 60px;
   object-fit: cover;
+  border-radius: 8px;
   margin-right: 1rem;
+  vertical-align: middle;
 }
 
 .cart-item-info {
+  display: flex;
+  align-items: center;
   flex: 1;
   text-align: left; /* Producto alineado a la izquierda */
 }

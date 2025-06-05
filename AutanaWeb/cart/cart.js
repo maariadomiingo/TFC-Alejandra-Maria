@@ -13,11 +13,12 @@ function loadCart() {
         .then(products => {
             cart = products.map(p => ({
                 id: p.id,
-                name: p.nombre, // <-- nombre de la BBDD
-                price: parseFloat(p.precio_stripe), // <-- precio_stripe de Stripe
-                currency: p.moneda_stripe, // <-- moneda_stripe
+                name: p.nombre,
+                price: parseFloat(p.precio_stripe),
+                currency: p.moneda_stripe,
                 quantity: 1,
-                stripe_price_id: p.stripe_price_id
+                stripe_price_id: p.stripe_price_id,
+                imagen_url: p.imagen_url // <-- Añade esto
             }));
             updateCartDisplay();
         });
@@ -34,10 +35,11 @@ function updateCartDisplay() {
         cartItemsDiv.innerHTML += `
             <div class="cart-item">
                 <div class="cart-item-info">
+                    <img src="${item.imagen_url}" alt="${item.name}" class="cart-item-img">
                     <h3>${item.name}</h3>
                 </div>
                 <div class="cart-item-price">
-                     $${itemTotal.toFixed(2)} ${item.currency}
+                    $${item.price.toFixed(2)} ${item.currency} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)} ${item.currency}
                 </div>
                 <span class="delete-icon" style="cursor:pointer;margin-left:10px;" onclick="removeFromCart(${item.id})" title="Eliminar">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
