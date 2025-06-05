@@ -9,18 +9,25 @@ if (!isset($_SESSION['user_id'])) {
 
 $usuario_id = $_SESSION['user_id'];
 $correo = $_POST['correo'] ?? '';
-$password = $_POST['password'] ?? '';
+$nuevaPassword = $_POST['password'] ?? '';
+$passwordActual = $_POST['current_password'] ?? '';
 $talla_top = $_POST['talla_top'] ?? '';
 $talla_bottom = $_POST['talla_bottom'] ?? '';
 $direccion_envio = $_POST['direccion_envio'] ?? '';
 
-// Verificar si se cambió el correo
-$stmt = $pdo->prepare("SELECT correo FROM Usuarios WHERE id = ?");
+// Obtener contraseña actual del usuario
+$stmt = $pdo->prepare("SELECT correo, password FROM Usuarios WHERE id = ?");
 $stmt->execute([$usuario_id]);
-$usuario = $stmt->fetch();
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if (!password_verify($passwordActual, $usuario['password'])) {
+    header("Location: editar-perfil.php?error=Contraseña actual incorrecta");
+    exit;
+}
+
+
+// Actualizar correo si se modificó
 if ($correo !== $usuario['correo']) {
-    // Verifica si el correo ya existe
     $checkCorreo = $pdo->prepare("SELECT id FROM Usuarios WHERE correo = ?");
     $checkCorreo->execute([$correo]);
 
@@ -28,16 +35,16 @@ if ($correo !== $usuario['correo']) {
         die("Ese correo ya está registrado.");
     }
 
-    // Simula envío de confirmación (puedes integrar PHPMailer aquí)
-    // mail($correo, "Confirma tu nuevo correo", "Haz clic en este enlace para confirmar...");
+    // Simular envío de confirmación por correo (puedes usar PHPMailer aquí)
+    // mail($correo, "Confirma tu nuevo correo", "Haz clic aquí para confirmar tu nuevo correo...");
 
     $updateCorreo = $pdo->prepare("UPDATE Usuarios SET correo = ? WHERE id = ?");
     $updateCorreo->execute([$correo, $usuario_id]);
 }
 
-// Si hay nueva contraseña, actualizarla
-if (!empty($password)) {
-    $hashed = password_hash($password, PASSWORD_DEFAULT);
+// Actualizar contraseña si se ingresó una nueva
+if (!empty($nuevaPassword)) {
+    $hashed = password_hash($nuevaPassword, PASSWORD_DEFAULT);
     $updatePassword = $pdo->prepare("UPDATE Usuarios SET password = ? WHERE id = ?");
     $updatePassword->execute([$hashed, $usuario_id]);
 }
@@ -56,5 +63,4 @@ if ($stmt->rowCount() > 0) {
 
 header("Location: editar-perfil.php?exito=1");
 exit;
-
 ?>

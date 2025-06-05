@@ -43,6 +43,13 @@
   }
 
   /*Segunda parte> el area donde se mostrarn tres outfits*/
+  h3{
+    color: #CC5B22;
+  }
+  span{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+  }
   .carrusel-collection h1{
     padding-top: 100px;
     text-align: center;
@@ -59,7 +66,7 @@
   }
   .outfit img {
     width: 100%;      
-    max-width: 150px; 
+    max-width: 350px; 
     height: auto;     
     margin-bottom: 10px;
   }
@@ -95,47 +102,57 @@
     font-size: 18px;
   }
   /*Tercera parte > la mision de la empresa*/ 
-  .ourMission {
-    display: flex;
-    align-items: center;
-    width: 99vw;           
-    margin: 0;
-    padding: 0;
-    background-color: #CC5B22;
-  }
-  
-  .ourMission img {
-    width: 32vw;         
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .mission-content {
-    width: 50vw;
-    padding: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-    text-align: left;
-    background-color: #CC5B22;  
-  }
-  
-  .ourMission p {
-    font-size: 24px;
-    font-family: 'Plantagenet';
-    color: #F4E3C1;
-  }
-  
-  .ourMission button {
-    padding: 12px 24px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #3B7D29;
-    color: #F4E3C1;
-    border: none;
-  }
+.our-mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 4rem 6vw;
+  background-color: #d8c4af;
+  font-family: 'Plantagenet';
+}
+
+.mission-video {
+  width: 100%;
+  max-width: 350px; /* Cambia este valor para ajustar el tamaño */
+  border-radius: 1.5rem;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  margin-left: 100px;
+}
+
+
+.mission-content {
+  max-width: 500px;
+  text-align: left;
+}
+
+.tagline {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #CC5B22;
+  margin-bottom: 2rem;
+}
+
+.explore-button {
+  padding: 0.8rem 2rem;
+  background-color: #CC5B22;
+  color: #fff;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.explore-button:hover {
+  background-color: #8a2e00;
+  transform: translateY(-2px);
+}
+
   /*cuarta parte*/
    body {
       margin: 0;

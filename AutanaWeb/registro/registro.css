@@ -32,11 +32,11 @@ body {
   box-sizing: border-box;
 }
 
-html, body {
+/* html, body {
   height: 100%;
   font-family: 'Plantagenet';
   position: relative;
-}
+} */
 
 /* Video de fondo */
 #background-video {
@@ -56,15 +56,28 @@ html, body {
   margin: 30px auto 10px auto;
 }
 
-/* Contenedor del formulario */
+html, body {
+  height: 100%;
+  font-family: 'Plantagenet';
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centro vertical */
+  background: transparent;
+  position: relative;
+}
+
 form {
-  background-color: rgba(255, 255, 255, 0.95);
-  max-width: 600px;
+  background-color: #ffff;
   padding: 30px 25px;
-  margin: 20px auto;
   border-radius: 16px;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  margin-top: 80px; /* Separación desde arriba */
+  width: 350px;
+  box-sizing: border-box;
+  z-index: 1;
 }
+
 
 /* Etiquetas y campos */
 form label {
@@ -93,7 +106,7 @@ form h3 {
 form button {
   width: 100%;
   padding: 12px;
-  background-color: #1d6f42;
+  background-color: #007bff;
   color: white;
   font-weight:lighter;
   border: none;
@@ -103,7 +116,7 @@ form button {
 }
 
 form button:hover {
-  background-color: #145232;
+  background-color: #0054af;
 }
 
 Errores

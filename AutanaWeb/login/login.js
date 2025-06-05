@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let valid = true;
 
-    // Validaciones previas
+    // Validaciones
     if (!email) {
       emailError.textContent = "El correo es obligatorio.";
       valid = false;
@@ -62,32 +62,26 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch("./login.php", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
       if (data.success) {
-        emailError.textContent = "";
-        passwordError.textContent = "";
-        alert("Inicio de sesión exitoso");
         window.location.href = "../homeUser/home.php";
       } else {
-        // Mostrar errores en campos
         if (
           data.message.toLowerCase().includes("correo") ||
           data.message.toLowerCase().includes("contraseña")
         ) {
           passwordError.textContent = "Correo o contraseña incorrectos.";
         } else {
-          alert(data.message || "Error al iniciar sesión.");
+          passwordError.textContent = data.message || "Error al iniciar sesión.";
         }
       }
     } catch (error) {
-      alert("Error en la solicitud: " + error.message);
+      passwordError.textContent = "Error en la solicitud. Intenta más tarde.";
     }
   });
 
@@ -95,40 +89,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const regex = /^[\w.-]+@([\w-]+\.)+[a-zA-Z]{2,7}$/;
     return regex.test(email);
   }
-});
-const togglePassword = document.getElementById("togglePassword");
-const passwordInput = document.getElementById("password");
 
-// Mostrar la contraseña mientras el usuario mantiene presionado el icono
-togglePassword.addEventListener("mousedown", () => {
-  passwordInput.setAttribute("type", "text");
-  togglePassword.classList.remove("fa-eye");
-  togglePassword.classList.add("fa-eye-slash");
-});
+  // Toggle para mostrar/ocultar contraseña
+  const togglePassword = document.getElementById("togglePassword");
 
-togglePassword.addEventListener("mouseup", () => {
-  passwordInput.setAttribute("type", "password");
-  togglePassword.classList.remove("fa-eye-slash");
-  togglePassword.classList.add("fa-eye");
-});
+  togglePassword.addEventListener("mousedown", () => {
+    passwordInput.type = "text";
+    togglePassword.classList.replace("fa-eye", "fa-eye-slash");
+  });
 
-togglePassword.addEventListener("mouseleave", () => {
-  // En caso de que el usuario mueva el mouse fuera del icono sin soltar
-  passwordInput.setAttribute("type", "password");
-  togglePassword.classList.remove("fa-eye-slash");
-  togglePassword.classList.add("fa-eye");
-});
+  togglePassword.addEventListener("mouseup", () => {
+    passwordInput.type = "password";
+    togglePassword.classList.replace("fa-eye-slash", "fa-eye");
+  });
 
-// Para dispositivos táctiles
-togglePassword.addEventListener("touchstart", () => {
-  passwordInput.setAttribute("type", "text");
-  togglePassword.classList.remove("fa-eye");
-  togglePassword.classList.add("fa-eye-slash");
-});
+  togglePassword.addEventListener("mouseleave", () => {
+    passwordInput.type = "password";
+    togglePassword.classList.replace("fa-eye-slash", "fa-eye");
+  });
 
-togglePassword.addEventListener("touchend", () => {
-  passwordInput.setAttribute("type", "password");
-  togglePassword.classList.remove("fa-eye-slash");
-  togglePassword.classList.add("fa-eye");
-});
+  // Para móviles
+  togglePassword.addEventListener("touchstart", () => {
+    passwordInput.type = "text";
+    togglePassword.classList.replace("fa-eye", "fa-eye-slash");
+  });
 
+  togglePassword.addEventListener("touchend", () => {
+    passwordInput.type = "password";
+    togglePassword.classList.replace("fa-eye-slash", "fa-eye");
+  });
+});

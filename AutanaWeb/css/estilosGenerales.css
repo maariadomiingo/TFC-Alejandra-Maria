@@ -1,0 +1,106 @@
+@font-face {
+    font-family: "Plantagenet Cherokee";
+    src: url("../fonts/plantagenet-cherokee/plantc.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: "Plantagenet Cherokee", serif;
+    background-color: white;
+    margin: 0;
+  }
+  
+  /* NAVBAR */
+  .navbar {
+    padding: 1rem 1.5rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .nav-links li {
+    display: inline-block;
+    margin-right: 1.5rem;
+  }
+  
+  .nav-links a {
+    color: #4b5563; /* text-gray-700 */
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .nav-links a:hover {
+    color: #000000;
+  }
+  
+  .icon-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #4b5563;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  
+  .icon:hover {
+    color: #000000;
+  }
+  
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* MOBILE MENU */
+  .mobile-menu {
+    margin-top: 1rem;
+  }
+  
+  .mobile-menu a {
+    display: block;
+    color: #4b5563;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mobile-menu a:hover {
+    color: #000000;
+  }
+  
+  /* Responsive */
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
+    }
+  
+    .hamburger {
+      display: none;
+    }
+  
+    .mobile-menu {
+      display: none !important;
+    }
+  }
+  

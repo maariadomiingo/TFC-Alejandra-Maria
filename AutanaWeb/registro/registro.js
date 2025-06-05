@@ -68,16 +68,25 @@ form.addEventListener("submit", async function (e) {
 
   if (validName && validEmail && validPassword && validConfirmPassword) {
     const formData = new FormData(form);
-    const res = await fetch("../server/registro.php", {
-      method: "POST",
-      body: formData
-    });
 
-    const result = await res.text();
-    document.getElementById("responseMessage").innerText = result;
+    try {
+      const res = await fetch("../server/registro.php", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        window.location.href = "../homeUser/home.php"; // Cambia esta ruta según tu proyecto
+      } else {
+        document.getElementById("responseMessage").innerText = result.message;
+      }
+    } catch (err) {
+      document.getElementById("responseMessage").innerText = "Ocurrió un error en el servidor.";
+    }
+
     form.reset();
-
-    // Reseteamos los estilos de validación
     for (let input of Object.values(inputs)) {
       input.classList.remove("valid", "invalid");
     }

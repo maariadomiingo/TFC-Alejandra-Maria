@@ -36,7 +36,7 @@ $username = $isLoggedIn ? $_SESSION['user_name'] : '';
       <!-- Desktop Menu -->
       <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
         <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
-        <li><a href="#" class="hover:text-black">Our Mission</a></li>
+        <li><a href="../ourMission/ourMission.html" class="hover:text-black">Our Mission</a></li>
         <li><a href="#" class="hover:text-black">Behind the threads</a></li>
       </ul>
 
@@ -86,7 +86,7 @@ $username = $isLoggedIn ? $_SESSION['user_name'] : '';
     </div>
   </nav>
 
-<section class="video-section">
+<!-- <section class="video-section">
         Reemplaza con tu propio video
         <video class="video-background" autoplay muted loop>
             <source src="../img/6692_Crushing_Breaking_1920x1080.mp4" type="video/mp4">
@@ -102,46 +102,59 @@ $username = $isLoggedIn ? $_SESSION['user_name'] : '';
                 blending ancestral techniques with a contemporary vision.
             </p>
         </div>
-    </section>
+    </section> -->
 
   <section class="carrusel-collection">
     <h1 class="titulo">READY-TO-WEAR</h1>
 
-    <div class="flecha">See more <span class="arrow">➔</span></div>
+    <a href="../collection/collection.php" class="flecha">See More <span class="arrow">➔</span></a>
+    <!-- <div class="flecha">See more <span class="arrow">➔</span></div> -->
 
-   <div class="outfit-container">
-  <div class="outfit" data-product-id="1">
-    <img src="../img/outfit1.png" alt="">
-    Nombre de la prenda <br>
-    descripción <br>
-    <span>$precio</span>
-    <button class="favorite-btn" aria-label="Agregar a favoritos">♡</button>
+    <div class="outfit-container">
+      
+        <a href="../vistaProducto/producto.php?id=1" class="outfit" data-product-id="1">
+        <img src="../img/outfit1.jpg" alt="">
+        <h3>Mamey Wood <br></h3>
+        Bold elegance inspired by the rich tones of Amazonian mamey wood. <br>
+        <span>$800</span>  
+        </a>
+        
+    
+      <!-- <div class="outfit"> -->
+        <a href="../vistaProducto/producto.php?id=2" class="outfit" data-product-id="2">
+<img src="../img/outfit2.jpg" alt="">
+       <h3>Amazonas <br></h3> 
+        Vibrant freshness with the spirit of lush Amazonian green. <br>
+        <span>$800</span>
+        </a>
+        
+      <!-- </div> -->
+    
+      <!-- <div class="outfit"> -->
+        <a href="../vistaProducto/producto.php?id=3" class="outfit" data-product-id="3">
+        <img src="../img/outfit3.jpg" alt="">
+        <h3>Serene Earth <br></h3>
+        
+        Calm and natural elegance inspired by warm, earthy tones. <br>
+        <span>$1200</span>  
+        </a>
+        
+      <!-- </div> -->
+    </div>    
+  </section>
+
+<section class="our-mission">
+  <div class="mission-media">
+    <video class="mission-video" autoplay muted loop>
+      <source src="../img/VídeoOurMission.mp4" type="video/mp4">
+      Tu navegador no soporta el elemento de video.
+    </video>
   </div>
-
-  <div class="outfit" data-product-id="2">
-    <img src="../img/outfit2.png" alt="">
-    Nombre de la prenda <br>
-    descripción <br>
-    <span>$precio</span>
-    <button class="favorite-btn" aria-label="Agregar a favoritos">♡</button>
+  <div class="mission-content">
+    <p class="tagline">From Amazonian Hands to Global Lands</p>
+    <button class="explore-button">Explore Our Roots</button>
   </div>
-
-  <div class="outfit" data-product-id="3">
-    <img src="../img/outfit3.png" alt="">
-    Nombre de la prenda <br>
-    descripción <br>
-    <span>$precio</span>
-    <button class="favorite-btn" aria-label="Agregar a favoritos">♡</button>
-  </div>
-</div>
-
-
-  <section class="ourMission">
-    <img src="../img/OurMission.jpg" alt="">
-    <div class="mission-content">
-      <p>FROM AMAZONIAN HANDS TO GLOBAL LANDS</p>
-      <button>Explore Our Roots</button>
-    </div>
+</section>
   </section>
   
 <section class="section-container">
