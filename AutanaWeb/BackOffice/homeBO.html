@@ -35,6 +35,10 @@
             <img src="../img/messages.svg" alt="Notifications" class="icon" />
             <span>Notifications</span>
           </a>
+          <a href="#" class="nav-item" id="nav-chats">
+            <img src="../img/message.svg" alt="Chats" class="icon" />
+            <span>Chats</span>
+          </a>
         </nav>
         <div class="logout">
           <a href="#">
@@ -97,7 +101,37 @@
             <img src="../img/chart.svg" alt="Chart" />
           </div>
         </section>
+
+        <!-- Chats Section -->
+        <div id="chats-section" style="display: none">
+          <h2>Chats con clientes</h2>
+          <div id="chats-list"></div>
+          <div id="chat-admin-modal" style="display: none">
+            <h3 id="chat-admin-title"></h3>
+            <div
+              id="chat-admin-messages"
+              style="
+                height: 200px;
+                padding: 0.5rem;
+                overflow-y: auto;
+                border: 1px solid #eee;
+                margin-bottom: 1rem;
+              "
+            ></div>
+            <form id="chat-admin-form">
+              <input
+                type="text"
+                id="chat-admin-input"
+                placeholder="Escribe tu respuesta..."
+                required
+              />
+              <button type="submit">Enviar</button>
+            </form>
+            <button id="close-admin-chat">Cerrar</button>
+          </div>
+        </div>
       </main>
     </div>
+    <script src="homeBO.js"></script>
   </body>
 </html>

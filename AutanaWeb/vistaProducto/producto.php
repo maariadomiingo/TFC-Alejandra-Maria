@@ -87,6 +87,10 @@ $extra = $productsExtra[$productId];
   <link rel="stylesheet" href="../home/index.css">
   <link rel="stylesheet" href="../vistaProducto/producto.css" />
   <title><?php echo htmlspecialchars($titulo); ?></title>
+  <script>
+    const PRODUCT_ID = <?php echo json_encode($productId); ?>;
+  </script>
+  <script src="producto.js"></script>
 </head>
 
 <body>
@@ -132,6 +136,23 @@ $extra = $productsExtra[$productId];
           Comprar
         </button>
       </form>
+
+      <!-- Botón para abrir el chat -->
+      <?php if ($isLoggedIn): ?>
+        <button id="openChatBtn">Chat con el administrador</button>
+      <?php endif; ?>
+
+      <!-- Modal de chat -->
+      <div id="chatModal" style="display:none;">
+        <div class="chat-modal-content">
+          <span id="closeChatBtn">&times;</span>
+          <div id="chatMessages"></div>
+          <form id="chatForm">
+            <input type="text" id="chatInput" required />
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
     </section>
   </div>
 </body>

@@ -45,3 +45,64 @@ window.onload = () => {
       });
     });
   });
+
+  document.addEventListener("DOMContentLoaded", function() {
+  const openBtn = document.getElementById("openChatBtn");
+  const chatModal = document.getElementById("chatModal");
+  const closeBtn = document.getElementById("closeChatBtn");
+  const chatForm = document.getElementById("chatForm");
+  const chatInput = document.getElementById("chatInput");
+  const chatMessages = document.getElementById("chatMessages");
+
+  if (openBtn) {
+    openBtn.onclick = () => {
+      chatModal.style.display = "flex";
+      loadMessages();
+    };
+  }
+  if (closeBtn) {
+    closeBtn.onclick = () => chatModal.style.display = "none";
+  }
+
+  // Cerrar modal al hacer click fuera
+  window.onclick = function(event) {
+    if (event.target === chatModal) chatModal.style.display = "none";
+  };
+
+  // Enviar mensaje
+  if (chatForm) {
+    chatForm.onsubmit = function(e) {
+      e.preventDefault();
+      fetch("../chat/enviar_mensajes.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          producto_id: PRODUCT_ID,
+          mensaje: chatInput.value
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          chatInput.value = "";
+          loadMessages();
+        }
+      });
+    };
+  }
+
+  // Cargar mensajes
+  function loadMessages() {
+    fetch("../chat/obtener_mensajes.php?producto_id=" + PRODUCT_ID)
+      .then(res => res.json())
+      .then(data => {
+        chatMessages.innerHTML = "";
+        data.mensajes.forEach(msg => {
+          const div = document.createElement("div");
+          div.textContent = msg.remitente + ": " + msg.mensaje;
+          chatMessages.appendChild(div);
+        });
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      });
+  }
+});

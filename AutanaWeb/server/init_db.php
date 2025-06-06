@@ -63,6 +63,25 @@ try {
         FOREIGN KEY (usuario_id) REFERENCES Usuarios(id) ON DELETE CASCADE,
         FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE
     );
+    -- TABLAS DE CHAT
+    CREATE TABLE IF NOT EXISTS chats (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        producto_id INT NOT NULL,
+        cliente_id INT NOT NULL,
+        creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE,
+        FOREIGN KEY (cliente_id) REFERENCES Usuarios(id) ON DELETE CASCADE
+    );
+    CREATE TABLE IF NOT EXISTS mensajes (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        chat_id INT NOT NULL,
+        remitente_id INT NOT NULL,
+        mensaje TEXT NOT NULL,
+        enviado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        leido BOOLEAN DEFAULT FALSE,
+        FOREIGN KEY (chat_id) REFERENCES chats(id) ON DELETE CASCADE,
+        FOREIGN KEY (remitente_id) REFERENCES Usuarios(id) ON DELETE CASCADE
+    );
     ";
     $pdo->exec($crearTablas);
 
