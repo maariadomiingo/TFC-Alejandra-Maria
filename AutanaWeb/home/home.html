@@ -110,7 +110,7 @@
       >
       <!-- <div class="flecha">See more <span class="arrow">➔</span></div> -->
 
-      <div class="outfit-container">
+      <div class="outfit-container" id="outfit-container">
         <a
           href="../vistaProducto/producto.php?id=1"
           class="outfit"
@@ -206,6 +206,34 @@
     <!-- </section> -->
 
     <script src="home.js"></script>
+    <script>
+      fetch("home.php")
+        .then((res) => res.json())
+        .then((productos) => {
+          const container = document.getElementById("outfit-container");
+          container.innerHTML = "";
+          productos.forEach((producto) => {
+            // Separar título y subtítulo por el primer guion
+            const partes = producto.nombre.split("-");
+            const titulo = partes[0] ? partes[0].trim() : "";
+            const subtitulo = partes[1] ? partes[1].trim() : "";
+            container.innerHTML += `
+              <a href="../vistaProducto/producto.php?id=${
+                producto.id
+              }" class="outfit" data-product-id="${producto.id}">
+                <img src="${producto.imagen_url}" alt="${producto.nombre}" />
+                <h3>${titulo}</h3>
+                ${
+                  subtitulo
+                    ? `<div class="outfit-subtitle">${subtitulo}</div>`
+                    : ""
+                }
+                <span>$${Number(producto.precio).toFixed(2)}</span>
+              </a>
+            `;
+          });
+        });
+    </script>
   </body>
   <footer class="bg-white py-8 border-t border-gray-200">
     <div class="container mx-auto px-4">

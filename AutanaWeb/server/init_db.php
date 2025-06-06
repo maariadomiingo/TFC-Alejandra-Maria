@@ -126,7 +126,7 @@ try {
         [
             'nombre' => 'Collection 6 - Tepui Waters',
             'precio' => 135,
-            'imagen_url' => '../img/outift3.png',
+            'imagen_url' => '../img/outfit3.avif',
             'stripe_product_id' => 'prod_SOu1LVbogt7374',
             'stripe_price_id' => 'price_1RU6DKGh171OKFHVSNQmAdFy'
         ],
