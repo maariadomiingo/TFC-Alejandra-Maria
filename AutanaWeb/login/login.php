@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../server/init_db.php'; // Inicializa la BBDD y tablas si no existen
+require_once __DIR__ . '/../../vendor/autoload.php';
 header("Content-Type: application/json");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -36,5 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo json_encode(["success" => false, "message" => "Error en la base de datos: " . $e->getMessage()]);
     }
 } else {
-    echo json_encode(["success" => false, "message" => "Método no permitido"]);
+    echo json_encode(["success" => false, "message" => "Método no permitido"]);   echo json_encode(["success" => false, "message" => "Método no permitido"]);
 }
+
