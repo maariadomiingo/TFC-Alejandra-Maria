@@ -6,6 +6,31 @@
     <title>Document</title>
 </head>
 <body>
-    
+<?php
+<section class="carrusel-collection">
+  <h1 class="titulo">READY-TO-WEAR</h1>
+  <div class="outfit-container">
+    <?php foreach ($productos as $producto): ?>
+      <a href="../vistaProducto/producto.php?id=<?php echo $producto['id']; ?>" class="outfit" data-product-id="<?php echo $producto['id']; ?>">
+        <img src="<?php echo htmlspecialchars($producto['imagen_url']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>">
+        <?php
+          // Separar título y subtítulo por el primer guion
+          $partes = explode('-', $producto['nombre'], 2);
+          $titulo = trim($partes[0]);
+          $subtitulo = isset($partes[1]) ? trim($partes[1]) : '';
+        ?>
+        <div class="outfit-title"><?php echo htmlspecialchars($titulo); ?></div>
+        <?php if ($subtitulo): ?>
+          <div class="outfit-subtitle"><?php echo htmlspecialchars($subtitulo); ?></div>
+        <?php endif; ?>
+        <span>$<?php echo $producto['precio']; ?></span>
+        <button class="favorite-btn" aria-label="Agregar a favoritos">
+          <?php echo (isset($favoriteIds) && in_array($producto['id'], $favoriteIds)) ? '♥' : '♡'; ?>
+        </button>
+      </a>
+    <?php endforeach; ?>
+  </div>
+</section>
+?>
 </body>
 </html>

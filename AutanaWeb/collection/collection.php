@@ -28,7 +28,19 @@ if ($isLoggedIn) {
     error_log("Error DB: " . $e->getMessage());
     // Opcional: mostrar mensaje amigable o ignorar
   }
+} else {
+  // Conexión para productos aunque no esté logueado
+  $host = 'localhost';
+  $dbname = 'autana';
+  $dbuser = 'root';
+  $dbpass = '';
+  $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $dbuser, $dbpass);
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
+
+// --- NUEVO: Obtener todos los productos de la base de datos ---
+$stmt = $pdo->query("SELECT id, nombre, precio, imagen_url FROM productos");
+$productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -122,73 +134,17 @@ if ($isLoggedIn) {
     <h1 class="titulo">READY-TO-WEAR</h1>
 
     <div class="outfit-container">
-      <a href="../vistaProducto/producto.php?id=1" class="outfit" data-product-id="1">
-        <img src="../img/outfit1.jpg" alt="Outfit 1">
-        Nombre de la prenda 1 <br>
-        Descripción 1 <br>
-        <span>$precio1</span>
-        <button class="favorite-btn" aria-label="Agregar a favoritos">
-          <?php echo in_array(1, $favoriteIds) ? '♥' : '♡'; ?>
-        </button>
-
-      </a>
-
-      <a href="../vistaProducto/producto.php?id=2" class="outfit" data-product-id="2">
-        <img src="../img/outfit2.jpg" alt="Outfit 2">
-        Nombre de la prenda 2 <br>
-        Descripción 2 <br>
-        <span>$precio2</span>
-        <button class="favorite-btn" aria-label="Agregar a favoritos">
-          <?php echo in_array(2, $favoriteIds) ? '♥' : '♡'; ?>
-        </button>
-
-      </a>
-
-      <a href="../vistaProducto/producto.php?id=3" class="outfit" data-product-id="3">
-        <img src="../img/outfit3.jpg" alt="Outfit 3">
-        Nombre de la prenda 3 <br>
-        Descripción 3 <br>
-        <span>$precio3</span>
-        <button class="favorite-btn" aria-label="Agregar a favoritos">
-          <?php echo in_array(3, $favoriteIds) ? '♥' : '♡'; ?>
-        </button>
-
-      </a>
-
-      <a href="../vistaProducto/producto.php?id=4" class="outfit" data-product-id="4">
-        <img src="../img/outfit3.avif" alt="Outfit 4">
-        Nombre de la prenda 3 <br>
-        Descripción 3 <br>
-        <span>$precio3</span>
-        <button class="favorite-btn" aria-label="Agregar a favoritos">
-          <?php echo in_array(4, $favoriteIds) ? '♥' : '♡'; ?>
-        </button>
-
-      </a>
-
-      <a href="../vistaProducto/producto.php?id=5" class="outfit" data-product-id="5">
-        <img src="../img/outfit3.avif" alt="Outfit 5">
-        Nombre de la prenda 3 <br>
-        Descripción 3 <br>
-        <span>$precio3</span>
-        <button class="favorite-btn" aria-label="Agregar a favoritos">
-          <?php echo in_array(5, $favoriteIds) ? '♥' : '♡'; ?>
-        </button>
-
-      </a>
-
-      <a href="../vistaProducto/producto.php?id=6" class="outfit" data-product-id="6">
-        <img src="../img/outfit3.avif" alt="Outfit 6">
-        Nombre de la prenda 3 <br>
-        Descripción 3 <br>
-        <span>$precio3</span>
-        <button class="favorite-btn" aria-label="Agregar a favoritos">
-          <?php echo in_array(6, $favoriteIds) ? '♥' : '♡'; ?>
-        </button>
-
-      </a>
-
-      <!-- continúa igual para los demás -->
+      <?php foreach ($productos as $producto): ?>
+        <a href="../vistaProducto/producto.php?id=<?php echo $producto['id']; ?>" class="outfit" data-product-id="<?php echo $producto['id']; ?>">
+          <img src="<?php echo $producto['imagen_url']; ?>" alt="<?php echo $producto['nombre']; ?>">
+          <?php echo $producto['nombre']; ?> <br>
+          Descripción <br>
+          <span>$<?php echo $producto['precio']; ?></span>
+          <button class="favorite-btn" aria-label="Agregar a favoritos">
+            <?php echo in_array($producto['id'], $favoriteIds) ? '♥' : '♡'; ?>
+          </button>
+        </a>
+      <?php endforeach; ?>
     </div>
 
   </section>

@@ -89,42 +89,42 @@ try {
     // 5. Insertar productos outfit1...outfit6 si no existen
     $products = [
         [
-            'nombre' => 'Prenda 1 - Vestido Tradicional',
+            'nombre' => 'Collection 1 - Mamey Wood',
             'precio' => 120,
-            'imagen_url' => '../img/outfit1.png',
+            'imagen_url' => '../img/outfit1.jpg',
             'stripe_product_id' => 'prod_SOTnUnChSmNeCF',
             'stripe_price_id' => 'price_1RTgpqGh171OKFHVAbr3OP5x'
         ],
         [
-            'nombre' => 'Prenda 2 - Blusa Bordada',
+            'nombre' => 'Collection 2 - Amazonas',
             'precio' => 150,
-            'imagen_url' => '../img/outfit2.png',
+            'imagen_url' => '../img/outfit2.jpg',
             'stripe_product_id' => 'prod_SOtVrnssa3LOoi',
             'stripe_price_id' => 'price_1RU5iXGh171OKFHVvjSFRfWL'
         ],
         [
-            'nombre' => 'Prenda 3 - Pantalón Artesanal',
+            'nombre' => 'Collection 3 - Serene Earth',
             'precio' => 140,
-            'imagen_url' => '../img/outfit3.avif',
+            'imagen_url' => '../img/outfit3.jpg',
             'stripe_product_id' => 'prod_SOtyJdoQypITGL',
             'stripe_price_id' => 'price_1RU6AlGh171OKFHVfmGHgjq6'
         ],
         [
-            'nombre' => 'Prenda 4 - Chaleco Tejido',
+            'nombre' => 'Collection 4 - Emerald Canopy',
             'precio' => 110,
             'imagen_url' => '../img/outfit4.jpg',
             'stripe_product_id' => 'prod_SOu0xHcpMEcP0x',
             'stripe_price_id' => 'price_1RU6CAGh171OKFHVzVtsz851'
         ],
         [
-            'nombre' => 'Prenda 5 - Falda Plisada',
+            'nombre' => 'Collection 5 - Ceiba Spirit',
             'precio' => 130,
             'imagen_url' => '../img/outfit5.webp',
             'stripe_product_id' => 'prod_SOu0hIve6FzxNT',
             'stripe_price_id' => 'price_1RU6CnGh171OKFHVGlhcVxFS'
         ],
         [
-            'nombre' => 'Prenda 6 - Camisa de Lino',
+            'nombre' => 'Collection 6 - Tepui Waters',
             'precio' => 135,
             'imagen_url' => '../img/outift3.png',
             'stripe_product_id' => 'prod_SOu1LVbogt7374',
