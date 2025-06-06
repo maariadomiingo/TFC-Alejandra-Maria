@@ -92,6 +92,10 @@ $extra = $productsExtra[$productId];
 <body>
   <div class="product-page">
     <section class="product-card" aria-label="Detalle del producto <?php echo htmlspecialchars($titulo); ?>">
+      <!-- Flecha de retroceso en la esquina superior izquierda de la tarjeta -->
+      <a href="javascript:history.back()" class="back-arrow" aria-label="Volver atrás">
+        <img src="../img/flecha-izquierda.png" alt="Volver atrás" class="back-arrow-img" />
+      </a>
       <div class="product-image">
         <img src="<?php echo htmlspecialchars($productFromDB['imagen_url']); ?>" alt="<?php echo htmlspecialchars($productFromDB['nombre']); ?>" />
       </div>

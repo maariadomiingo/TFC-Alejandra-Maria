@@ -2,14 +2,14 @@
 
 /* Ajustes generales */
 @font-face {
-  font-family: 'Plantagenet';
-  src: url('../font/plantc.ttf') format('truetype');
+  font-family: "Plantagenet";
+  src: url("../font/plantc.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 .product-page {
-  font-family: 'Plantagenet', sans-serif;
+  font-family: "Plantagenet", sans-serif;
   background-color: #fafafa; /* color de fondo muy suave */
   color: #222; /* texto más suave que negro */
   margin: 0;
@@ -17,6 +17,7 @@
   display: flex;
   justify-content: center;
   line-height: 1.6;
+  position: relative;
 }
 
 .product-page .product-card {
@@ -25,24 +26,26 @@
   max-width: 900px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
   overflow: hidden;
   gap: 2rem;
   padding: 2rem;
   transition: box-shadow 0.3s ease;
+  position: relative;
 }
 
 .product-card:hover {
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .product-image {
   flex: 1 1 350px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   cursor: default; /* quitar zoom agresivo */
   transition: transform 0.3s ease;
+  position: relative;
 }
 
 .product-image img {
@@ -117,6 +120,37 @@
   background-color: #222;
 }
 
+/* Flecha de retroceso */
+.back-arrow {
+  position: absolute;
+  top: 5%;
+  left: 12px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  margin-left: 2%;
+}
+
+.back-arrow-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: filter 0.2s;
+  filter: grayscale(40%);
+}
+
+.back-arrow:hover .back-arrow-img {
+  filter: grayscale(0%) brightness(0.5);
+}
+
+/* Header */
+.header {
+  position: relative;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   body {
@@ -126,7 +160,8 @@
     flex-direction: column;
     padding: 1.5rem;
   }
-  .product-image, .product-details {
+  .product-image,
+  .product-details {
     flex: 1 1 100%;
   }
   .product-image {
