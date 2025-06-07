@@ -117,12 +117,18 @@ body {
   width: 100%;
   border-radius: 6px;
 }
+.chat-list-item-container {
+  border-bottom: 1px solid #eee;
+}
 .chat-list-item {
   padding: 0.5rem 1rem;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
   transition: background 0.2s;
 }
 .chat-list-item:hover {
   background: #f0f0f0;
+}
+.chat-messages-admin {
+  background: #fafbfc;
+  border-radius: 6px;
+  margin-bottom: 1rem;
 }

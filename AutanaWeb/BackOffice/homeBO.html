@@ -27,18 +27,6 @@
             <img src="../img/cart.svg" alt="Purchases" class="icon" />
             <span>Purchases</span>
           </a>
-          <a href="#" class="nav-item">
-            <img src="../img/shipping.svg" alt="Shipping" class="icon" />
-            <span>Shipping</span>
-          </a>
-          <a href="#" class="nav-item">
-            <img src="../img/messages.svg" alt="Notifications" class="icon" />
-            <span>Notifications</span>
-          </a>
-          <a href="#" class="nav-item" id="nav-chats">
-            <img src="../img/message.svg" alt="Chats" class="icon" />
-            <span>Chats</span>
-          </a>
         </nav>
         <div class="logout">
           <a href="#">
@@ -53,57 +41,15 @@
         <section class="card">
           <header class="card-header">
             <h2>Recent Users</h2>
-            <button class="btn-viewall">View all</button>
+            <button class="btn-viewall" id="btn-viewall">View all</button>
           </header>
-          <ul class="user-list">
-            <li>
-              <img src="../img/user.svg" alt="" class="avatar" /><span
-                >Usuario 1</span
-              >
-            </li>
-            <li>
-              <img src="../img/user.svg" alt="" class="avatar" /><span
-                >Usuario 2</span
-              >
-            </li>
-            <li>
-              <img src="../img/user.svg" alt="" class="avatar" /><span
-                >Usuario 3</span
-              >
-            </li>
-            <li>
-              <img src="../img/user.svg" alt="" class="avatar" /><span
-                >Usuario 4</span
-              >
-            </li>
-            <li>
-              <img src="../img/user.svg" alt="" class="avatar" /><span
-                >Usuario 5</span
-              >
-            </li>
-            <li>
-              <img src="../img/user.svg" alt="" class="avatar" /><span
-                >Usuario 6</span
-              >
-            </li>
-            <li>
-              <img src="../img/user.svg" alt="" class="avatar" /><span
-                >Usuario 7</span
-              >
-            </li>
-            <li>
-              <img src="../img/user.svg" alt="" class="avatar" /><span
-                >Usuario 8</span
-              >
-            </li>
+          <ul class="user-list" id="recent-users-list">
+            <!-- Los usuarios se cargarán aquí por JS -->
           </ul>
-          <div class="chart">
-            <img src="../img/chart.svg" alt="Chart" />
-          </div>
         </section>
 
-        <!-- Chats Section -->
-        <div id="chats-section" style="display: none">
+        <!-- Chats Section SIEMPRE VISIBLE -->
+        <div id="chats-section">
           <h2>Chats con clientes</h2>
           <div id="chats-list"></div>
           <div id="chat-admin-modal" style="display: none">
