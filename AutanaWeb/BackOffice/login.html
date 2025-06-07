@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Admin - BackOffice</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login Administrador</h2>
+      <form method="POST" action="login.php">
+        <input type="email" name="correo" placeholder="Correo" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          required
+        />
+        <button type="submit">Entrar</button>
+      </form>
+      <?php if (isset($_GET['error'])): ?>
+      <p style="color: red">Usuario o contraseña incorrectos</p>
+      <?php endif; ?>
+    </div>
+  </body>
+</html>

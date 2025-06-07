@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
                   form.onsubmit = function(e) {
                     e.preventDefault();
                     const input = form.querySelector("input");
+                    if (!input.value.trim()) return; // Evita mensajes vacíos
                     fetch("../chat/enviar_mensajes.php", {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },

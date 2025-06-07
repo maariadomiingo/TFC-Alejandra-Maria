@@ -10,7 +10,19 @@ if (!$chat_id) {
     exit;
 }
 
-$stmt = $pdo->prepare("SELECT m.*, u.nombre AS remitente FROM mensajes m JOIN Usuarios u ON m.remitente_id = u.id WHERE chat_id = ? ORDER BY enviado_en ASC");
+// Traer mensajes y distinguir si el remitente es admin o usuario
+$stmt = $pdo->prepare("
+    SELECT m.*, 
+        CASE 
+            WHEN m.remitente_tipo = 'admin' THEN 'Admin'
+            ELSE u.nombre
+        END AS remitente,
+        m.remitente_tipo
+    FROM mensajes m
+    LEFT JOIN Usuarios u ON m.remitente_id = u.id
+    WHERE m.chat_id = ?
+    ORDER BY m.enviado_en ASC
+");
 $stmt->execute([$chat_id]);
 $mensajes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

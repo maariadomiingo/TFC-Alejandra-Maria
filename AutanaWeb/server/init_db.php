@@ -82,6 +82,13 @@ try {
         FOREIGN KEY (chat_id) REFERENCES chats(id) ON DELETE CASCADE,
         FOREIGN KEY (remitente_id) REFERENCES Usuarios(id) ON DELETE CASCADE
     );
+    CREATE TABLE IF NOT EXISTS admins (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        correo VARCHAR(100) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        nombre VARCHAR(100) NOT NULL,
+        creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
     ";
     $pdo->exec($crearTablas);
 
@@ -165,6 +172,20 @@ try {
                 ':stripe_price_id' => $producto['stripe_price_id']
             ]);
         }
+    }
+
+    // Insertar admin de prueba si no existe
+    $checkAdmin = $pdo->prepare("SELECT COUNT(*) FROM admins WHERE correo = :correo");
+    $checkAdmin->execute([':correo' => 'admin1@autana.com']);
+    $existsAdmin = $checkAdmin->fetchColumn();
+    if ($existsAdmin == 0) {
+        $hashedPassword = password_hash('admin123', PASSWORD_DEFAULT);
+        $insertAdmin = $pdo->prepare("INSERT INTO admins (correo, password, nombre) VALUES (:correo, :password, :nombre)");
+        $insertAdmin->execute([
+            ':correo' => 'admin1@autana.com',
+            ':password' => $hashedPassword,
+            ':nombre' => 'admin1'
+        ]);
     }
 } catch (PDOException $e) {
     // Lanza la excepción para que el archivo principal la capture y devuelva JSON
