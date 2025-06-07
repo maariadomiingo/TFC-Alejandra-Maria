@@ -223,6 +223,18 @@
   cursor: pointer;
 }
 
+/* Estilo para el botón del chat */
+.chat-icon-btn img,
+.chat-icon-btn svg {
+  vertical-align: middle;
+  transition: filter 0.2s;
+}
+
+.chat-icon-btn:hover img,
+.chat-icon-btn:hover svg {
+  filter: brightness(0.8);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   body {

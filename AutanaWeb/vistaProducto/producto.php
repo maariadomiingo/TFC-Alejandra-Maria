@@ -137,9 +137,14 @@ $extra = $productsExtra[$productId];
         </button>
       </form>
 
-      <!-- Botón para abrir el chat -->
+      <!-- Mensaje informativo y botón de chat más abajo -->
+      <div class="product-help-info" style="margin: 1.5rem 0 1rem 0; text-align: center; font-size: 1.1rem; color: #1976d2; top:15px; position: relative;">
+        Have questions about this product? Ask us and we will solve your doubts!
+      </div>
       <?php if ($isLoggedIn): ?>
-        <button id="openChatBtn">Chat con el administrador</button>
+        <button id="openChatBtn" class="chat-icon-btn" title="Chat con el administrador" style="background:none;border:none;cursor:pointer;">
+          <img src="../img/chat.png" alt="Chat con el administrador" style="width:40px;height:40px; top:15px; position: relative;">
+        </button>
       <?php endif; ?>
 
       <!-- Modal de chat -->
