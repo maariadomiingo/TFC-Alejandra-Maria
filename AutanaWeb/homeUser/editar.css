@@ -73,3 +73,163 @@
 .btn-submit:hover {
   background-color: #1e40af;
 }
+/* editar.css - Estilos para el formulario */
+
+/* Contenedor principal del formulario */
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* Títulos y textos */
+.form-container h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 1rem;
+  display: block;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.info-text {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+/* Campos de entrada */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  transition: all 0.3s ease;
+  color: #1a1a1a;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background-color: #ffffff;
+}
+
+select.input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234a5568' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+}
+
+/* Grupos de formulario */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Grid para medidas corporales */
+.grid.grid-cols-2 {
+  gap: 1rem;
+}
+
+/* Botones */
+.btn-submit {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(102, 126, 234, 0.15);
+}
+
+.btn-secondary {
+  padding: 0.5rem 1rem;
+  background: #edf2f7;
+  color: #4a5568;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+/* Modal de contraseña */
+#passwordModal .bg-white {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#passwordModal h2 {
+  color: #2d3748;
+}
+
+/* Mensajes de error y éxito */
+.bg-red-100 {
+  background-color: #fff5f5;
+  border-color: #fed7d7;
+  color: #e53e3e;
+}
+
+.bg-green-100 {
+  background-color: #f0fff4;
+  border-color: #c6f6d5;
+  color: #38a169;
+}
+
+/* Efectos de hover para elementos interactivos */
+button:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .form-container {
+    padding: 1.5rem;
+  }
+  
+  .grid.grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}

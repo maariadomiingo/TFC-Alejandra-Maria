@@ -37,7 +37,7 @@ $username = $isLoggedIn ? $_SESSION['user_name'] : '';
       <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
         <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
         <li><a href="../ourMission/ourMission.html" class="hover:text-black">Our Mission</a></li>
-        <li><a href="#" class="hover:text-black">Behind the threads</a></li>
+        <li><a href="../home/aboutUs.html" class="hover:text-black">Behind the threads</a></li>
       </ul>
 
       <!-- Icons -->
@@ -80,9 +80,9 @@ $username = $isLoggedIn ? $_SESSION['user_name'] : '';
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mt-4 hidden md:hidden space-y-2">
-      <a href="#" class="block text-gray-700 hover:text-black">Colection</a>
-      <a href="#" class="block text-gray-700 hover:text-black">Our Mission</a>
-      <a href="#" class="block text-gray-700 hover:text-black">Behind the threads</a>
+      <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
+        <li><a href="../ourMission/ourMission.html" class="hover:text-black">Our Mission</a></li>
+        <li><a href="../home/aboutUs.html" class="hover:text-black">Behind the threads</a></li>
     </div>
   </nav>
 
@@ -152,27 +152,30 @@ $username = $isLoggedIn ? $_SESSION['user_name'] : '';
   </div>
   <div class="mission-content">
     <p class="tagline">From Amazonian Hands to Global Lands</p>
-    <button class="explore-button">Explore Our Roots</button>
+    <a href="../ourMission/ourMission.html"><button class="explore-button">Explore Our Roots</button></a>
   </div>
 </section>
   </section>
   
-<section class="section-container">
-    <div class="left-panel">
+    <section class="section-container">
+  <div class="left-panel">
+    <div class="content-wrapper">
       <p id="mainText">
-        <span>Each garment</span> tells an ancestral story, blending tradition 
-        and contemporary design to bring the cultural richness of the <span>Venezuelan Amazonas</span> to the world.
+        <span>Each garment</span> tells an ancestral story, blending tradition
+        and contemporary design to bring the cultural richness of the
+        <span>Venezuelan Amazonas</span> to the world.
       </p>
-      <div class="options">
-        <div data-index="0">mission</div>
-        <div data-index="1">philanthropy</div>
-        <div data-index="2">sustainability</div>
-      </div>
     </div>
-    <div class="image-panel">
-      <img src="../img/indigenasAmazonas.jpg" alt="Model Amazonas">
+    <div class="options-static">
+      <span>mission</span>
+      <span>philanthropy</span>
+      <span>sustainability</span>
     </div>
-  </section>
+  </div>
+  <div class="image-panel">
+    <img src="../img/indigenasAmazonas.jpg" alt="Model Amazonas" />
+  </div>
+</section>
 
   <hr>
 

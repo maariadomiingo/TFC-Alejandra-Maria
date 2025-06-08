@@ -118,3 +118,225 @@ font-family: 'Plantagenet' ;
     height: 200px;
   }
 }
+/* collection.css - Estilo de lujo para favoritos */
+
+/* Fuentes y colores base */
+:root {
+  --primary: #2d3748;
+  --secondary: #591c00;
+  --accent: #b17900;
+  --light: #f4d9a7;
+  --error: #c7480c;
+  --success: #004410;
+}
+
+body {
+  font-family: 'Plantagenet';
+  background-color: #f9f9f9;
+  color: var(--primary);
+}
+
+/* Título principal */
+h1 {
+  font-size: 32px;
+    font-family: 'Plantagenet';
+  text-align: center;
+  margin: 3rem 0;
+  color: var(--error);
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+h1:after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* Contenedor de productos */
+.outfit-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2.5rem;
+  padding: 2rem 5%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Tarjeta de producto premium */
+.outfit {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  position: relative;
+  border: none;
+}
+
+.outfit:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), #4f0000);
+}
+
+.outfit:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.outfit a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.outfit img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+.outfit:hover img {
+  transform: scale(1.03);
+}
+
+.outfit-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.outfit h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--primary);
+}
+
+.outfit p {
+  font-size: 0.95rem;
+  color: var(--secondary);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.outfit span {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: auto;
+}
+
+/* Mensaje de error elegante */
+.error-message {
+  background: linear-gradient(135deg, #fff5f7, #fff);
+  border-left: 4px solid var(--error);
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 5px 15px rgba(255, 56, 96, 0.08);
+  display: flex;
+  align-items: center;
+}
+
+.error-message:before {
+  content: '✕';
+  color: var(--error);
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+/* Mensaje cuando no hay favoritos */
+.no-favorites {
+  text-align: center;
+  padding: 4rem;
+  background: white;
+  border-radius: 16px;
+  max-width: 600px;
+  margin: 3rem auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.no-favorites p {
+  font-size: 1.2rem;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+}
+
+.no-favorites .icon {
+  font-size: 3rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+/* Efectos especiales */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.outfit {
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+.outfit:nth-child(1) { animation-delay: 0.1s; }
+.outfit:nth-child(2) { animation-delay: 0.2s; }
+.outfit:nth-child(3) { animation-delay: 0.3s; }
+/* ... agregar más según necesidad */
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .outfit-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .outfit-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .outfit-container {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+  
+  .outfit img {
+    height: 280px;
+  }
+  
+  .no-favorites {
+    padding: 2rem 1.5rem;
+    margin: 2rem 1.5rem;
+  }
+}

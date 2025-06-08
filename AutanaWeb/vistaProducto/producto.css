@@ -1,261 +1,274 @@
-/* producto.css - estilo minimalista suave */
-
-/* Ajustes generales */
 @font-face {
-  font-family: "Plantagenet";
-  src: url("../font/plantc.ttf") format("truetype");
+  font-family: 'Plantagenet';
+  src: url('../font/plantc.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
-.product-page {
-  font-family: "Plantagenet", sans-serif;
-  background-color: #fafafa; /* color de fondo muy suave */
-  color: #222; /* texto más suave que negro */
-  margin: 0;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  line-height: 1.6;
-  position: relative;
-}
-
-.product-page .product-card {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 900px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
-  overflow: hidden;
-  gap: 2rem;
-  padding: 2rem;
-  transition: box-shadow 0.3s ease;
-  position: relative;
-}
-
-.product-card:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.product-image {
-  flex: 1 1 350px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  cursor: default; /* quitar zoom agresivo */
-  transition: transform 0.3s ease;
-  position: relative;
-}
-
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* para que no recorte la imagen */
-  display: block;
-  border-radius: 12px;
-}
-
-.product-image:hover {
-  transform: none; /* quitar zoom */
-}
-
-.product-details {
-  flex: 1 1 450px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.product-details h1 {
-  font-weight: 600;
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 0.3rem;
-}
-
-.product-price {
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #555; /* color gris oscuro suave */
-  margin-bottom: 1rem;
-}
-
-.section-title {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-top: 1.5rem;
-  margin-bottom: 0.4rem;
-  border-bottom: 1px solid #ddd; /* línea sutil */
-  padding-bottom: 0.2rem;
-}
-
-.product-details p {
-  font-weight: 400;
-  font-size: 1rem;
-  color: #444;
-  text-align: left;
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* Botón minimalista */
-.buy-button {
-  margin-top: 2rem;
-  padding: 0.75rem 1.8rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  background-color: #444;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.buy-button:hover {
-  background-color: #222;
-}
-
-/* Flecha de retroceso */
-.back-arrow {
-  position: absolute;
-  top: 5%;
-  left: 12px;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  background: none;
-  border: none;
-  margin-left: 2%;
-}
-
-.back-arrow-img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  transition: filter 0.2s;
-  filter: grayscale(40%);
-}
-
-.back-arrow:hover .back-arrow-img {
-  filter: grayscale(0%) brightness(0.5);
-}
-
-/* Header */
-.header {
-  position: relative;
-}
-
-/* Modal de chat */
-#chatModal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.3);
-  justify-content: center;
-  align-items: center;
-}
-
-#chatModal[style*="flex"] {
-  display: flex !important;
-}
-
-.chat-modal-content {
-  background: #fff;
-  border-radius: 10px;
-  width: 350px;
-  max-width: 90vw;
-  padding: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-#closeChatBtn {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-#chatMessages {
-  flex: 1;
-  min-height: 150px;
-  max-height: 250px;
-  overflow-y: auto;
-  margin-bottom: 1rem;
-  border: 1px solid #eee;
-  border-radius: 6px;
-  padding: 0.5rem;
-  background: #fafafa;
-}
-
-#chatForm {
-  display: flex;
-  gap: 0.5rem;
-}
-
-#chatInput {
-  flex: 1;
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-#chatForm button {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: none;
-  background: #007bff;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Estilo para el botón del chat */
-.chat-icon-btn img,
-.chat-icon-btn svg {
-  vertical-align: middle;
-  transition: filter 0.2s;
-}
-
-.chat-icon-btn:hover img,
-.chat-icon-btn:hover svg {
-  filter: brightness(0.8);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  body {
-    padding: 1rem;
-  }
-  .product-card {
-    flex-direction: column;
-    padding: 1.5rem;
-  }
-  .product-image,
-  .product-details {
-    flex: 1 1 100%;
-  }
-  .product-image {
-    max-height: 400px;
-    margin-bottom: 1rem;
-  }
-  .product-details h1 {
-    font-size: 1.8rem;
-  }
-  .product-price {
-    font-size: 1.3rem;
-  }
-}
+:root {
+      --primary-color: #5e6e5d;
+      --secondary-color: #d4b483;
+      --accent-color: #a38a6d;
+      --light-color: #f8f5f0;
+      --dark-color: #333333;
+    }
+    
+    body {
+      font-family: 'Plantagenet';
+      color: var(--dark-color);
+      background-color: var(--light-color);
+      line-height: 1.6;
+    }
+    
+    .product-page {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    .product-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      position: relative;
+      padding: 2rem;
+    }
+    
+    .back-arrow {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      z-index: 10;
+      transition: transform 0.3s ease;
+    }
+    
+    .back-arrow:hover {
+      transform: translateX(-4px);
+    }
+    
+    .back-arrow-img {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      height: 600px;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .product-image:hover img {
+      transform: scale(1.03);
+    }
+    
+    .product-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .product-details h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .product-subtitle {
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    .product-price {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .section-title::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background-color: var(--secondary-color);
+      border-radius: 50%;
+    }
+    
+    .buy-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 1rem;
+      align-self: flex-start;
+    }
+    
+    .buy-button:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    #openChatBtn {
+      background-color: var(--secondary-color);
+      color: var(--dark-color);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    #openChatBtn:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+    
+    /* Chat modal styles */
+    #chatModal {
+      display: none;
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 350px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      overflow: hidden;
+    }
+    
+    .chat-modal-content {
+      position: relative;
+      padding: 1.5rem;
+    }
+    
+    #closeChatBtn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--dark-color);
+    }
+    
+    #chatMessages {
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    
+    #chatForm {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    #chatInput {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    
+    #chatForm button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    #chatForm button:hover {
+      background-color: var(--accent-color);
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .product-card {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+      
+      .product-image {
+        height: 400px;
+      }
+      
+      .product-details h1 {
+        font-size: 2rem;
+      }
+    }
+    
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .product-card > * {
+      animation: fadeIn 0.6s ease forwards;
+    }
+    
+    .product-image {
+      animation-delay: 0.1s;
+    }
+    
+    .product-details h1 {
+      animation-delay: 0.2s;
+    }
+    
+    .product-subtitle, .product-price {
+      animation-delay: 0.3s;
+    }
+    
+    .product-details > div {
+      animation: fadeIn 0.6s ease forwards;
+      animation-delay: calc(0.4s + (var(--i) * 0.1s));
+    }

@@ -1,0 +1,111 @@
+/* collection.css - Estilos para la página de favoritos */
+
+/* Estilos generales */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 2rem 0;
+  color: #2d3748;
+  letter-spacing: -0.025em;
+}
+
+/* Contenedor de productos */
+.outfit-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Tarjeta de producto */
+.outfit {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.outfit:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.outfit a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.outfit img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.outfit h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1rem 1rem 0.5rem;
+  color: #2d3748;
+}
+
+.outfit p {
+  font-size: 0.875rem;
+  color: #4a5568;
+  margin: 0 1rem 0.5rem;
+  display: -webkit-box;
+  overflow: hidden;
+}
+
+.outfit span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0.5rem 1rem 1rem;
+}
+
+/* Mensaje cuando no hay favoritos */
+.outfit-container + p {
+  text-align: center;
+  font-size: 1.125rem;
+  color: #4a5568;
+  margin: 3rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .outfit-container {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .outfit-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .outfit img {
+    height: 250px;
+  }
+}

@@ -119,38 +119,73 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('current_password_input').value = '';
   }
 
-  window.validateCurrentPassword = function () {
+  // ... (código existente hasta la función validateCurrentPassword)
+
+ // En tu editar.js
+window.validateCurrentPassword = async function() {
     const entered = document.getElementById('current_password_input').value;
-    const currentPasswordCorrect = "123456"; // Aquí debes integrar con el servidor
-
-    if (entered === currentPasswordCorrect) {
-      isPasswordVerified = true;
-      closeCurrentPasswordModal();
-      form.submit();
-    } else {
-      document.getElementById('currentPasswordError').classList.remove('hidden');
+    
+    try {
+        const response = await fetch('../homeUser/verificarPasword.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ password_actual: entered })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            // Marcar como verificado en la sesión
+            const verifyResponse = await fetch('../homeUser/set_verified_session.php');
+            const verifyData = await verifyResponse.json();
+            
+            if (verifyData.success) {
+                // Reenviar el formulario
+                document.querySelector('form').submit();
+            } else {
+                showError("Error al verificar la sesión");
+            }
+        } else {
+            showError(data.message || "Contraseña incorrecta");
+        }
+    } catch (error) {
+        showError("Error al verificar la contraseña");
+        console.error("Error:", error);
     }
-  }
-
-  // Auto cierre de popup de éxito
-  const popup = document.getElementById('successPopup');
-  if (popup) {
-    setTimeout(() => popup.remove(), 5000);
-  }
-});
-
-function savePassword() {
-  const newPassword = document.getElementById('password').value;
-  const hiddenField = document.getElementById('hidden_password');
-
-  if (newPassword.trim().length < 6) {
-    alert("La nueva contraseña debe tener al menos 6 caracteres.");
-    return;
-  }
-
-  hiddenField.value = newPassword; // actualizar valor del campo oculto
-  toggleModal();
 }
+
+function showError(message) {
+    const errorElement = document.getElementById('currentPasswordError');
+    errorElement.textContent = message;
+    errorElement.classList.remove('hidden');
+}
+  // Modificación del evento submit del formulario
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    let errores = false;
+    // ... (validaciones existentes)
+    
+    if (errores) return;
+    
+    // Verificar si se está cambiando el correo o contraseña
+    const isChangingEmail = correoInput.value !== "<?php echo htmlspecialchars($correo); ?>";
+    const isChangingPassword = document.getElementById('hidden_password').value !== '';
+    
+    if (isChangingEmail || isChangingPassword) {
+      if (!isPasswordVerified) {
+        openCurrentPasswordModal();
+      } else {
+        form.submit();
+      }
+    } else {
+      form.submit();
+    }
+  });
+
+});
   // function savePassword() {
   //   const newPassword = document.getElementById('password').value;
   //   if (newPassword.trim() !== '') {
@@ -177,3 +212,33 @@ function savePassword() {
       setTimeout(() => popup.remove(), 5000);
     }
   });
+
+  function calcularTallas() {
+    const hombro = parseFloat(document.getElementById('hombro').value) || 0;
+    const pecho = parseFloat(document.getElementById('pecho').value) || 0;
+    const cintura = parseFloat(document.getElementById('cintura').value) || 0;
+    const cadera = parseFloat(document.getElementById('cadera').value) || 0;
+    const altura = parseFloat(document.getElementById('altura').value) || 0;
+
+    // Lógica de recomendación (simplificada)
+    let talla_top = 'M'; // Default
+    if (pecho < 90) talla_top = 'XS';
+    else if (pecho < 95) talla_top = 'S';
+    else if (pecho < 100) talla_top = 'M';
+    else if (pecho < 105) talla_top = 'L';
+    else talla_top = 'XL';
+
+    let talla_bottom = '32'; // Default
+    if (cintura < 70) talla_bottom = '28';
+    else if (cintura < 75) talla_bottom = '30';
+    else if (cintura < 80) talla_bottom = '32';
+    else if (cintura < 85) talla_bottom = '34';
+    else talla_bottom = '36';
+
+    // Mostrar recomendación
+    document.getElementById('talla_top').value = talla_top;
+    document.getElementById('talla_bottom').value = talla_bottom;
+    
+    // Opcional: Mostrar mensaje al usuario
+    alert(`Recommended sizes:\nTop: ${talla_top}\nBottom: ${talla_bottom}`);
+}

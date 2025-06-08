@@ -16,16 +16,25 @@ $stmt->execute([$usuario_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Obtener datos del perfil desde user_profiles
-$stmt = $pdo->prepare("SELECT talla_top, talla_bottom, direccion_envio FROM user_profiles WHERE usuario_id = ?");
+$stmt = $pdo->prepare("SELECT hombro, pecho, cintura, cadera, altura, 
+                      direccion_calle, direccion_ciudad, direccion_estado, direccion_codigo_postal, direccion_pais 
+                      FROM user_profiles WHERE usuario_id = ?");
 $stmt->execute([$usuario_id]);
 $profile = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Asignar valores para mostrar en el formulario
 $nombre = $user['nombre'] ?? '';
 $correo = $user['correo'] ?? '';
-$talla_top = $profile['talla_top'] ?? '';
-$talla_bottom = $profile['talla_bottom'] ?? '';
-$direccion_envio = $profile['direccion_envio'] ?? '';
+$hombro = $profile['hombro'] ?? '';
+$pecho = $profile['pecho'] ?? '';
+$cintura = $profile['cintura'] ?? '';
+$cadera = $profile['cadera'] ?? '';
+$altura = $profile['altura'] ?? '';
+$direccion_calle = $profile['direccion_calle'] ?? '';
+$direccion_ciudad = $profile['direccion_ciudad'] ?? '';
+$direccion_estado = $profile['direccion_estado'] ?? '';
+$direccion_codigo_postal = $profile['direccion_codigo_postal'] ?? '';
+$direccion_pais = $profile['direccion_pais'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +103,7 @@ $direccion_envio = $profile['direccion_envio'] ?? '';
   </div>
 </div>
 
-<body class="bg-white">
+<div class="bg-white">
 
   <!-- Navbar -->
   <nav class="px-6 py-4 shadow-md">
@@ -108,7 +117,7 @@ $direccion_envio = $profile['direccion_envio'] ?? '';
       <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
         <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
         <li><a href="../ourMission/ourMission.html" class="hover:text-black">Our Mission</a></li>
-        <li><a href="#" class="hover:text-black">Behind the threads</a></li>
+        <li><a href="../home/aboutUs.html" class="hover:text-black">Behind the threads</a></li>
       </ul>
 
       <!-- Icons -->
@@ -150,9 +159,9 @@ $direccion_envio = $profile['direccion_envio'] ?? '';
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mt-4 hidden md:hidden space-y-2">
-      <a href="#" class="block text-gray-700 hover:text-black">Collection</a>
-      <a href="#" class="block text-gray-700 hover:text-black">Our Mission</a>
-      <a href="#" class="block text-gray-700 hover:text-black">Behind the threads</a>
+      <a href="../collection/collection.php" class="block text-gray-700 hover:text-black">Collection</a>
+      <a href="../ourMission/ourMission.html" class="block text-gray-700 hover:text-black">Our Mission</a>
+      <a href="../home/aboutUs.html" class="block text-gray-700 hover:text-black">Behind the threads</a>
     </div>
   </nav>
 
@@ -187,28 +196,75 @@ $direccion_envio = $profile['direccion_envio'] ?? '';
 </div>
 
 
-  <div class="form-group flex items-center gap-2">
-    <i data-lucide="shirt" class="w-5 h-5 text-gray-600"></i>
-    <label for="talla_top" class="label">Top Size (cm/in)</label>
+  <!-- Sección de medidas corporales -->
+<div class="form-group">
+  <h3 class="subtitle">Body Measurements (cm)</h3>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <label for="hombro" class="label">Shoulder</label>
+      <input type="number" id="hombro" name="hombro" class="input" value="<?php echo htmlspecialchars($profile['hombro'] ?? ''); ?>">
+    </div>
+    <div>
+      <label for="pecho" class="label">Chest</label>
+      <input type="number" id="pecho" name="pecho" class="input" value="<?php echo htmlspecialchars($profile['pecho'] ?? ''); ?>">
+    </div>
+    <div>
+      <label for="cintura" class="label">Waist</label>
+      <input type="number" id="cintura" name="cintura" class="input" value="<?php echo htmlspecialchars($profile['cintura'] ?? ''); ?>">
+    </div>
+    <div>
+      <label for="cadera" class="label">Hip</label>
+      <input type="number" id="cadera" name="cadera" class="input" value="<?php echo htmlspecialchars($profile['cadera'] ?? ''); ?>">
+    </div>
+    <div>
+      <label for="altura" class="label">Height</label>
+      <input type="number" id="altura" name="altura" class="input" value="<?php echo htmlspecialchars($profile['altura'] ?? ''); ?>">
+    </div>
   </div>
-  <input type="text" id="talla_top" name="talla_top" required class="input" value="<?php echo htmlspecialchars($talla_top); ?>">
+  <button type="button" onclick="calcularTallas()" class="btn-secondary mt-2">Calculate Recommended Sizes</button>
+</div>
 
-  <div class="form-group flex items-center gap-2">
-    <i data-lucide="box" class="w-5 h-5 text-gray-600 rotate-90"></i>
-    <label for="talla_bottom" class="label">Bottom Size (cm/in)</label>
+<!-- Sección de dirección dividida -->
+<div class="form-group">
+  <h3 class="subtitle">Shipping Address</h3>
+  <div class="grid grid-cols-1 gap-4">
+    <div>
+      <label for="direccion_calle" class="label">Street Address</label>
+      <input type="text" id="direccion_calle" name="direccion_calle" class="input" value="<?php echo htmlspecialchars($profile['direccion_calle'] ?? ''); ?>">
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="direccion_ciudad" class="label">City</label>
+        <input type="text" id="direccion_ciudad" name="direccion_ciudad" class="input" value="<?php echo htmlspecialchars($profile['direccion_ciudad'] ?? ''); ?>">
+      </div>
+      <div>
+        <label for="direccion_estado" class="label">State/Province</label>
+        <input type="text" id="direccion_estado" name="direccion_estado" class="input" value="<?php echo htmlspecialchars($profile['direccion_estado'] ?? ''); ?>">
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="direccion_codigo_postal" class="label">Postal Code</label>
+        <input type="text" id="direccion_codigo_postal" name="direccion_codigo_postal" class="input" value="<?php echo htmlspecialchars($profile['direccion_codigo_postal'] ?? ''); ?>">
+      </div>
+      <div>
+        <label for="direccion_pais" class="label">Country</label>
+        <select id="direccion_pais" name="direccion_pais" class="input">
+          <option value="">Select Country</option>
+          <option value="US" <?php echo (isset($profile['direccion_pais']) && $profile['direccion_pais'] == 'US') ? 'selected' : ''; ?>>United States</option>
+          <option value="CA" <?php echo (isset($profile['direccion_pais']) && $profile['direccion_pais'] == 'CA') ? 'selected' : ''; ?>>Canada</option>
+          <!-- Más opciones de países -->
+        </select>
+      </div>
+    </div>
   </div>
-  <input type="text" id="talla_bottom" name="talla_bottom" required class="input" value="<?php echo htmlspecialchars($talla_bottom); ?>">
 
-  <div class="form-group">
-    <label for="direccion_envio" class="label">Shipping Address</label>
-    <textarea id="direccion_envio" name="direccion_envio" required class="textarea"><?php echo htmlspecialchars($direccion_envio); ?></textarea>
-  </div>
-
+ 
   <input type="hidden" id="hidden_password" name="password">
-<input type="hidden" name="current_password" id="hidden_current_password">
+  <input type="hidden" name="current_password" id="hidden_current_password">
 
+<button onclick="validateCurrentPassword()" type="submit" class="btn-submit">Update Profile</button>
 
-  <button type="submit" class="btn-submit">Update Profile</button>
 </form>
 
 

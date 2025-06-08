@@ -47,7 +47,7 @@
     color: #CC5B22;
   }
   span{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Plantagenet';
     font-weight: bolder;
   }
   .carrusel-collection h1{
@@ -154,74 +154,101 @@
 }
 
   /*cuarta parte*/
-   body {
-      margin: 0;
-      font-family: Georgia, serif;
-      background-color: #fff8f0;
-    }
+ 
+.section-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 60px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  min-height: 500px; /* Altura mínima para mantener proporciones */
+}
 
-    .section-container {
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 800px;
-      margin: 60px auto;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
+.left-panel {
+  background-color: #f4d9a7;
+  flex: 1 1 50%;
+  padding: 60px 40px;
+  color: #5a2d00;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Necesario para el posicionamiento interno */
+}
 
-    .left-panel {
-      background-color: #f4d9a7;
-      flex: 1 1 50%;
-      padding: 60px 40px;
-      color: #5a2d00;
-    }
+.content-wrapper {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  display: flex;
+  flex-direction: column;
+}
 
-    .left-panel p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 40px;
-    }
+#mainText {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  flex-grow: 1; /* Permite que el texto crezca y empuje las opciones hacia abajo */
+}
 
-    .left-panel p span {
-      color: #c7480c;
-      font-weight: bold;
-    }
+#mainText span {
+  color: #c7480c;
+  font-weight: bold;
+}
 
-    .options div {
-      font-size: 1.2rem;
-      padding: 10px 0;
-      cursor: pointer;
-      color: #b17900;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      transition: color 0.3s;
-    }
+.options-static {
+  margin-top: auto; /* Empuja el contenedor hacia abajo */
+  padding-top: 30px;
+  position: sticky;
+  bottom: 0;
+  background-color: #f4d9a7; /* Igual que el panel para solapamiento */
+  z-index: 1; /* Asegura que esté sobre el contenido si hay scroll */
+}
 
-    .options div:hover {
-      color: #3e6b00;
-    }
+.options-static span {
+  display: block; /* Cada opción en su propia línea */
+  font-size: 1.2rem;
+  padding: 10px 0;
+  cursor: pointer;
+  color: #b17900;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: color 0.3s;
+}
 
-    .image-panel {
-      flex: 1 1 50%;
-    }
+.options-static span:hover {
+  color: #3e6b00;
+}
 
-    .image-panel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+.image-panel {
+  flex: 1 1 50%;
+  min-height: 500px; /* Igual que el contenedor principal */
+}
 
-    @media (max-width: 768px) {
-      .section-container {
-        flex-direction: column;
-      }
+.image-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-      .left-panel,
-      .image-panel {
-        flex: 1 1 100%;
-      }
-    }
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .section-container {
+    flex-direction: column;
+    margin: 30px auto;
+  }
+  
+  .left-panel, .image-panel {
+    flex: 1 1 100%;
+  }
+  
+  .left-panel {
+    padding: 40px 20px;
+    min-height: auto;
+  }
+  
+  .image-panel {
+    min-height: 300px;
+  }
+}
     /*quinta parte*/
     .video-section {
             position: relative;

@@ -81,7 +81,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
         <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
         <li><a href="../ourMission/ourMission.html" class="hover:text-black">Our Mission</a></li>
-        <li><a href="#" class="hover:text-black">Behind the threads</a></li>
+        <li><a href="../home/aboutUs.html" class="hover:text-black">Behind the threads</a></li>
       </ul>
 
       <!-- Icons -->
@@ -124,9 +124,9 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mt-4 hidden md:hidden space-y-2">
-      <a href="#" class="block text-gray-700 hover:text-black">Colection</a>
-      <a href="#" class="block text-gray-700 hover:text-black">Our Mission</a>
-      <a href="#" class="block text-gray-700 hover:text-black">Behind the threads</a>
+      <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
+        <li><a href="../ourMission/ourMission.html" class="hover:text-black">Our Mission</a></li>
+        <li><a href="../home/aboutUs.html" class="hover:text-black">Behind the threads</a></li>
     </div>
   </nav>
 

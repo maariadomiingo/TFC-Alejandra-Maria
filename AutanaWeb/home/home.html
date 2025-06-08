@@ -5,79 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
     <!-- <link rel="stylesheet" href="../css/footer.css"> -->
-    <title>Responsive Navbar</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-      window.onload = () => {
-        lucide.createIcons();
-        // Toggle mobile menu
-        const toggle = document.getElementById("menu-toggle");
-        const menu = document.getElementById("mobile-menu");
-        toggle.addEventListener("click", () => {
-          menu.classList.toggle("hidden");
-        });
-      };
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-white">
-    <nav class="px-6 py-4 shadow-md">
-      <div class="flex items-center justify-between">
-        <!-- Logo -->
-        <img src="../img/logoSinFondo.png" alt="" class="logo" />
+   <title>Responsive Navbar</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    window.onload = () => {
+      lucide.createIcons();
+      // Toggle mobile menu
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-        <!-- Desktop Menu -->
-        <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
-          <li>
-            <a href="../collection/collection.php" class="hover:text-black"
-              >Collection</a
-            >
-          </li>
-          <li>
-            <a href="../ourMission/ourMission.html" class="hover:text-black"
-              >Our Mission</a
-            >
-          </li>
-          <li><a href="#" class="hover:text-black">Behind the threads</a></li>
-        </ul>
+<body class="bg-white">
 
-        <!-- Icons -->
-        <div class="flex items-center space-x-4">
-          <button aria-label="Login">
-            <a href="../login/login.html" aria-label="Login">
-              <i
-                data-lucide="user"
-                class="w-6 h-6 text-gray-700 hover:text-black"
-              ></i>
-            </a>
-          </button>
-          <button aria-label="Cart" onclick="goToCart()">
-            <i
-              data-lucide="shopping-cart"
-              class="w-6 h-6 text-gray-700 hover:text-black"
-            ></i>
-          </button>
+  <nav class="px-6 py-4 shadow-md">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="../home/home.html">
+        <img src="../img/logoSinFondo.png" alt="" class="logo">
+      </a>
 
-          <!-- Mobile Hamburger -->
-          <button id="menu-toggle" class="md:hidden">
-            <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
-          </button>
-        </div>
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
+        <li><a href="../ourMission/ourMission.html" class="hover:text-black">Our Mission</a></li>
+        <li><a href="../home/aboutUs.html" class="hover:text-black">Behind the threads</a></li>
+      </ul>
+
+        <a href="../cart/cart.html" aria-label="Cart">
+          <i data-lucide="shopping-cart" class="w-6 h-6 text-gray-700 hover:text-black"></i>
+        </a>
+
+        <!-- Mobile Hamburger -->
+        <button id="menu-toggle" class="md:hidden">
+          <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+        </button>
       </div>
+    </div>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="mt-4 hidden md:hidden space-y-2">
-        <a
-          href="../collection/collection.php"
-          class="block text-gray-700 hover:text-black"
-          >Collection</a
-        >
-        <a href="#" class="block text-gray-700 hover:text-black">Our Mission</a>
-        <a href="#" class="block text-gray-700 hover:text-black"
-          >Behind the threads</a
-        >
-      </div>
-    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mt-4 hidden md:hidden space-y-2">
+      <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
+        <li><a href="../ourMission/ourMission.html" class="hover:text-black">Our Mission</a></li>
+        <li><a href="../home/aboutUs.html" class="hover:text-black">Behind the threads</a></li>
+    </div>
+  </nav>
 
     <section class="video-section">
       Reemplaza con tu propio video
@@ -116,7 +93,7 @@
           class="outfit"
           data-product-id="1"
         >
-          <img src="../img/outfit1.jpg" alt="" />
+          <img src="../img/vestido.jpg" alt="" />
           <h3>Mamey Wood <br /></h3>
           Bold elegance inspired by the rich tones of Amazonian mamey wood.
           <br />
@@ -168,22 +145,25 @@
     </section>
 
     <section class="section-container">
-      <div class="left-panel">
-        <p id="mainText">
-          <span>Each garment</span> tells an ancestral story, blending tradition
-          and contemporary design to bring the cultural richness of the
-          <span>Venezuelan Amazonas</span> to the world.
-        </p>
-        <div class="options">
-          <div data-index="0">mission</div>
-          <div data-index="1">philanthropy</div>
-          <div data-index="2">sustainability</div>
-        </div>
-      </div>
-      <div class="image-panel">
-        <img src="../img/indigenasAmazonas.jpg" alt="Model Amazonas" />
-      </div>
-    </section>
+  <div class="left-panel">
+    <div class="content-wrapper">
+      <p id="mainText">
+        <span>Each garment</span> tells an ancestral story, blending tradition
+        and contemporary design to bring the cultural richness of the
+        <span>Venezuelan Amazonas</span> to the world.
+      </p>
+    </div>
+    <div class="options-static">
+      <span>mission</span>
+      <span>philanthropy</span>
+      <span>sustainability</span>
+    </div>
+  </div>
+  <div class="image-panel">
+    <img src="../img/indigenasAmazonas.jpg" alt="Model Amazonas" />
+  </div>
+</section>
+
 
     <hr />
 
