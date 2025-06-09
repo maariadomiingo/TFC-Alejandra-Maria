@@ -45,5 +45,18 @@ app.post('/create-checkout-session', async (req, res) => {
   }
 });
 
+app.get('/stripe-purchases', async (req, res) => {
+  try {
+    const sessions = await stripe.checkout.sessions.list({
+      limit: 20
+      // Quita payment_status
+    });
+    res.json({ purchases: sessions.data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 const PORT = 4242;
 app.listen(PORT, () => console.log(`Stripe server running on http://localhost:${PORT}`));

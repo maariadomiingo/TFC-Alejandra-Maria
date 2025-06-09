@@ -93,13 +93,22 @@ try {
     $pdo->exec($crearTablas);
 
     // 4. Insertar usuarios de prueba si no existen
-    $usuarios = [
-        ['nombre' => 'maria', 'correo' => 'domingopuentemaria@gmail.com', 'password' => '123456'],
-        ['nombre' => 'alejandra', 'correo' => 'ale@ejemplo.com', 'password' => '123456']
+    $usuariosRandom = [
+        ['nombre' => 'Lucas Romero', 'correo' => 'lucas.romero@example.com', 'password' => 'pass1234'],
+        ['nombre' => 'Sofía Torres', 'correo' => 'sofia.torres@example.com', 'password' => 'pass1234'],
+        ['nombre' => 'Mateo García', 'correo' => 'mateo.garcia@example.com', 'password' => 'pass1234'],
+        ['nombre' => 'Valentina Ruiz', 'correo' => 'valentina.ruiz@example.com', 'password' => 'pass1234'],
+        ['nombre' => 'Diego Fernández', 'correo' => 'diego.fernandez@example.com', 'password' => 'pass1234'],
+        ['nombre' => 'Martina López', 'correo' => 'martina.lopez@example.com', 'password' => 'pass1234'],
+        ['nombre' => 'Daniel Pérez', 'correo' => 'daniel.perez@example.com', 'password' => 'pass1234'],
+        ['nombre' => 'Emma Sánchez', 'correo' => 'emma.sanchez@example.com', 'password' => 'pass1234'],
+        ['nombre' => 'Alejandro Castro', 'correo' => 'alejandro.castro@example.com', 'password' => 'pass1234'],
+        ['nombre' => 'Camila Gómez', 'correo' => 'camila.gomez@example.com', 'password' => 'pass1234'],
     ];
+
     $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM Usuarios WHERE correo = :correo");
     $insertStmt = $pdo->prepare("INSERT INTO Usuarios (nombre, correo, password) VALUES (:nombre, :correo, :password)");
-    foreach ($usuarios as $usuario) {
+    foreach ($usuariosRandom as $usuario) {
         $checkStmt->execute([':correo' => $usuario['correo']]);
         $exists = $checkStmt->fetchColumn();
         if ($exists == 0) {

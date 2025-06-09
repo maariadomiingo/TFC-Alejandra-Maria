@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchases (Stripe) - Autana Dashboard</title>
+    <link rel="stylesheet" href="homeBO.css" />
+  </head>
+  <body>
+    <div
+      class="container"
+      style="justify-content: center; align-items: flex-start"
+    >
+      <main
+        class="main-content"
+        style="
+          width: 100%;
+          max-width: 1400px;
+          margin: 40px auto;
+          overflow-x: auto;
+        "
+      >
+        <div class="card" style="min-width: 1200px">
+          <header class="card-header">
+            <h2>Purchases (Stripe)</h2>
+            <a
+              href="homeBO.html"
+              class="btn-back"
+              style="
+                text-decoration: none;
+                padding: 6px 14px;
+                background: #4a4a4a;
+                color: #fff;
+                border-radius: 20px;
+              "
+              >Back</a
+            >
+          </header>
+          <table
+            class="user-table"
+            style="
+              width: 100%;
+              min-width: 1100px;
+              border-collapse: collapse;
+              font-size: 1rem;
+            "
+          >
+            <thead>
+              <tr>
+                <th style="padding: 14px 10px; background: #f8f8f8">ID</th>
+                <th style="padding: 14px 10px; background: #f8f8f8">
+                  Customer Email
+                </th>
+                <th style="padding: 14px 10px; background: #f8f8f8">Amount</th>
+                <th style="padding: 14px 10px; background: #f8f8f8">Date</th>
+                <th style="padding: 14px 10px; background: #f8f8f8">Status</th>
+              </tr>
+            </thead>
+            <tbody id="stripe-purchases-list">
+              <!-- Compras cargadas por JS -->
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <script>
+      // Cambia la URL por la de tu servidor Node si es necesario
+      fetch("http://localhost:4242/stripe-purchases")
+        .then((res) => res.json())
+        .then((data) => {
+          const purchasesList = document.getElementById(
+            "stripe-purchases-list"
+          );
+          purchasesList.innerHTML = "";
+          if (data.purchases && Array.isArray(data.purchases)) {
+            data.purchases.forEach((purchase) => {
+              const tr = document.createElement("tr");
+              tr.innerHTML = `
+                <td>${purchase.id}</td>
+                <td>${
+                  purchase.customer_details
+                    ? purchase.customer_details.email
+                    : ""
+                }</td>
+                <td>${(purchase.amount_total / 100).toFixed(2)} ${
+                purchase.currency ? purchase.currency.toUpperCase() : ""
+              }</td>
+                <td>${new Date(purchase.created * 1000).toLocaleString()}</td>
+                <td>${purchase.payment_status}</td>
+              `;
+              purchasesList.appendChild(tr);
+            });
+          } else {
+            purchasesList.innerHTML =
+              "<tr><td colspan='5'>No purchases found or error loading data.</td></tr>";
+          }
+        });
+    </script>
+  </body>
+</html>

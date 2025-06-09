@@ -132,3 +132,8 @@ body {
   border-radius: 6px;
   margin-bottom: 1rem;
 }
+.user-table td,
+.user-table th {
+  padding: 18px 10px !important;
+  border-bottom: 1px solid #e0e0e0;
+}

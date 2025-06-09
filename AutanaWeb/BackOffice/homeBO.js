@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const chatAdminInput = document.getElementById("chat-admin-input");
   const closeAdminChat = document.getElementById("close-admin-chat");
 
+  const navPurchases = document.getElementById("nav-purchases");
+  const purchasesSection = document.getElementById("purchases-section");
+  const btnBackPurchases = document.getElementById("btn-back-purchases");
+  const mainContent = document.querySelector(".main-content");
+  const purchasesList = document.getElementById("stripe-purchases-list");
+
   let currentChatId = null;
 
   // Mostrar sección de chats al pulsar en el menú
@@ -207,4 +213,37 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Cargar los chats automáticamente al cargar la página
   cargarListaChats();
+
+  if (btnBackPurchases) {
+    btnBackPurchases.onclick = function() {
+      purchasesSection.style.display = "none";
+      if (mainContent) mainContent.style.display = "block";
+    };
+  }
+
+  function cargarComprasStripe() {
+    fetch("http://localhost:4242/stripe-purchases")
+      .then(res => res.json())
+      .then(data => {
+        purchasesList.innerHTML = "";
+        data.purchases.forEach((purchase, idx) => {
+          const tr = document.createElement("tr");
+          tr.style.background = idx % 2 === 0 ? "#f5f5f5" : "#fff";
+          tr.innerHTML = `
+            <td style="padding:18px 10px; border-bottom:1px solid #e0e0e0;">${purchase.id}</td>
+            <td style="padding:18px 10px; border-bottom:1px solid #e0e0e0;">${
+              purchase.customer_details ? purchase.customer_details.email : ""
+            }</td>
+            <td style="padding:18px 10px; border-bottom:1px solid #e0e0e0;">${(purchase.amount_total / 100).toFixed(2)} ${
+            purchase.currency ? purchase.currency.toUpperCase() : ""
+          }</td>
+            <td style="padding:18px 10px; border-bottom:1px solid #e0e0e0;">${new Date(
+              purchase.created * 1000
+            ).toLocaleString()}</td>
+            <td style="padding:18px 10px; border-bottom:1px solid #e0e0e0;">${purchase.payment_status}</td>
+          `;
+          purchasesList.appendChild(tr);
+        });
+      });
+  }
 });

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Users - Autana Dashboard</title>
+    <link rel="stylesheet" href="homeBO.css" />
+  </head>
+  <body>
+    <div
+      class="container"
+      style="justify-content: center; align-items: flex-start"
+    >
+      <main
+        class="main-content"
+        style="width: 100%; max-width: 700px; margin: 40px auto"
+      >
+        <div class="card">
+          <header class="card-header">
+            <h2>All Users</h2>
+            <a
+              href="homeBO.html"
+              class="btn-back"
+              style="
+                text-decoration: none;
+                padding: 6px 14px;
+                background: #4a4a4a;
+                color: #fff;
+                border-radius: 20px;
+              "
+              >Back</a
+            >
+          </header>
+          <table
+            class="user-table"
+            style="width: 100%; border-collapse: collapse"
+          >
+            <thead>
+              <tr>
+                <th style="padding: 10px 8px; background: #f8f8f8">ID</th>
+                <th style="padding: 10px 8px; background: #f8f8f8">Name</th>
+                <th style="padding: 10px 8px; background: #f8f8f8">Email</th>
+                <th style="padding: 10px 8px; background: #f8f8f8">
+                  Created At
+                </th>
+                <!-- Añade una columna más en el thead -->
+                <th style="padding: 10px 8px; background: #f8f8f8">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="all-users-list">
+              <!-- Usuarios cargados por JS -->
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <script>
+      // Cargar todos los usuarios al abrir la página
+      fetch("obtener_todos_usuarios.php")
+        .then((res) => res.json())
+        .then((data) => {
+          const allUsersList = document.getElementById("all-users-list");
+          allUsersList.innerHTML = "";
+          data.usuarios.forEach((usuario, idx) => {
+            const tr = document.createElement("tr");
+            tr.style.background = idx % 2 === 0 ? "#f5f5f5" : "#fff";
+            tr.innerHTML = `
+              <td style="padding:8px 6px;">${usuario.id}</td>
+              <td style="padding:8px 6px;">${usuario.nombre}</td>
+              <td style="padding:8px 6px;">${usuario.correo}</td>
+              <td style="padding:8px 6px;">${usuario.creado_en}</td>
+              <td style="padding:8px 6px; text-align:center;">
+                <button class="btn-delete-user" data-id="${usuario.id}" title="Eliminar usuario" style="background:none;border:none;cursor:pointer;">
+                  <img src="../img/papelera.png" alt="Eliminar" style="width:20px;height:20px;vertical-align:middle;filter:grayscale(0.7);">
+                </button>
+              </td>
+            `;
+            allUsersList.appendChild(tr);
+          });
+        });
+
+      // Delegación de eventos para borrar usuario
+      document.addEventListener("click", function (e) {
+        if (e.target.closest(".btn-delete-user")) {
+          const btn = e.target.closest(".btn-delete-user");
+          const userId = btn.getAttribute("data-id");
+          fetch("eliminar_usuario.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "id=" + encodeURIComponent(userId),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success) {
+                btn.closest("tr").remove();
+              } else {
+                alert("No se pudo eliminar el usuario.");
+              }
+            });
+        }
+      });
+    </script>
+  </body>
+</html>
