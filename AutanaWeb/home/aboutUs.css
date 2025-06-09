@@ -1,4 +1,46 @@
-        :root {
+ @font-face {
+  font-family: 'Plantagenet';
+  src: url('../font/plantc.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+ :root {
+            --primary: #3e6b00;
+            --secondary: #b17900;
+            --light: #FEFAE0;
+            --dark: #1A1A1A;
+            --accent: #c7480c;
+        }
+        
+        body {
+            font-family: 'Plantagenet';
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Plantagenet';
+            font-weight: 500;
+        }
+        
+        nav {
+            background-color: white;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+      .logo {
+  width: 150px;    
+  height: auto;     
+}
+
+:root {
             --primary: #5e6e5d;
             --secondary: #d4b483;
             --light: #f8f5f0;
@@ -11,10 +53,7 @@
             background-color: white;
             line-height: 1.6;
         }
-        
-        .header-font {
-            font-family: 'Playfair Display', serif;
-        }
+      
         
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/descarga\ \(7\).jpeg');

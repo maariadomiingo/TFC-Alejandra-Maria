@@ -1,7 +1,5 @@
 Array
 (
-    [user_id] => 1
-    [user_name] => maria
     [admin_id] => 1
     [admin_nombre] => admin1
 )

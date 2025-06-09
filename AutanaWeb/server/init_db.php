@@ -95,6 +95,7 @@ try {
 
     // 4. Insertar usuarios de prueba si no existen
     $usuariosRandom = [
+        ['nombre' => 'Maria', 'correo' => 'domingopuentemaria@gmail.com', 'password' => '123456'],
         ['nombre' => 'Lucas Romero', 'correo' => 'lucas.romero@example.com', 'password' => 'pass1234'],
         ['nombre' => 'Sofía Torres', 'correo' => 'sofia.torres@example.com', 'password' => 'pass1234'],
         ['nombre' => 'Mateo García', 'correo' => 'mateo.garcia@example.com', 'password' => 'pass1234'],

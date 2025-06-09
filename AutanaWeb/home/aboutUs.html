@@ -1,219 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Behind the Threads | Autana</title>
-    <link rel="stylesheet" href="aboutUs.css">
+    <link rel="stylesheet" href="aboutUs.css" />
+    <link rel="stylesheet" href="../home/navbar.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="px-6 py-4 shadow-sm bg-white sticky top-0 z-50">
-        <div class="flex items-center justify-between max-w-7xl mx-auto">
-            <img src="../img/logoSinFondo.png" alt="Autana Logo" class="h-12" />
-            
-            <ul class="hidden md:flex space-x-8 text-gray-700 font-medium">
-                <li><a href="../collection/collection.php" class="hover:text-primary transition-colors">Collection</a></li>
-                <li><a href="../ourMission/ourMission.html" class="hover:text-primary transition-colors">Our Mission</a></li>
-                <li><a href="./aboutUs.html" class="text-primary font-semibold">Behind the Threads</a></li>
-            </ul>
-            
-            <div class="flex items-center space-x-4">
-                <a href="../login/login.html" aria-label="Login">
-                    <i data-lucide="user" class="w-6 h-6 text-gray-700 hover:text-primary transition-colors"></i>
-                </a>
-                <button aria-label="Cart" onclick="goToCart()">
-                    <i data-lucide="shopping-cart" class="w-6 h-6 text-gray-700 hover:text-primary transition-colors"></i>
-                </button>
-                <button id="menu-toggle" class="md:hidden">
-                    <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
-                </button>
-            </div>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    />
+  </head>
+  <body>
+  <script>
+      window.onload = () => {
+        lucide.createIcons();
+        // Toggle mobile menu
+        const toggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("mobile-menu");
+        toggle.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white">
+    <nav class="px-6 py-4 shadow-md">
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
+        <a href="../home/home.html">
+          <img src="../img/logoSinFondo.png" alt="" class="logo" />
+        </a>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
+          <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
+        <li><a href="../ourMission/ourMission.html" class="hover:text-black">Our Mission</a></li>
+        <li><a href="../home/aboutUs.html" class="hover:text-black">Behind the threads</a></li>
+        </ul>
+
+        <!-- Icons -->
+        <div class="flex items-center space-x-4">
+          <button aria-label="Login">
+            <a href="../login/login.html" aria-label="Login">
+              <i
+                data-lucide="user"
+                class="w-6 h-6 text-gray-700 hover:text-black"
+              ></i>
+            </a>
+          </button>
+          <button aria-label="Cart">
+            <a href="../cart/cart.html" aria-label="Cart">
+              <i
+                data-lucide="shopping-cart"
+                class="w-6 h-6 text-gray-700 hover:text-black"
+              ></i>
+            </a>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button id="menu-toggle" class="md:hidden">
+            <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+          </button>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mt-4 hidden md:hidden space-y-2 px-6">
-            <a href="../collection/collection.php" class="block text-gray-700 hover:text-primary transition-colors">Collection</a>
-            <a href="../ourMission/ourMission.html" class="block text-gray-700 hover:text-primary transition-colors">Our Mission</a>
-            <a href="./aboutUs.html" class="block text-primary font-semibold">Behind the Threads</a>
-        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="mt-4 hidden md:hidden space-y-2">
+        <li><a href="../collection/collection.php" class="hover:text-black">Collection</a></li>
+        <li><a href="../ourMission/ourMission.html" class="hover:text-black">Our Mission</a></li>
+        <li><a href="../home/aboutUs.html" class="hover:text-black">Behind the threads</a></li>
+      </div>
     </nav>
 
     <!-- Hero Section -->
-<!-- Replace the existing hero-section with this code -->
-<section class="hero-section relative flex items-center justify-center text-center text-white h-[60vh] overflow-hidden">
-    <!-- Video Background -->
-<!-- <img src="../img/descarga (7).jpeg" alt=""> -->
-    
-    <!-- Gradient Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-black/20 z-10"></div>
-    
-    <!-- Content -->
-    <div class="relative z-20 px-4 max-w-3xl">
-        <h1 class="header-font text-4xl md:text-5xl font-bold mb-4">Behind the Threads</h1>
-        <p class="text-xl md:text-2xl">The people and passion behind Autana's artisanal creations</p>
-    </div>
-</section>
+    <!-- Replace the existing hero-section with this code -->
+    <section
+      class="hero-section relative flex items-center justify-center text-center text-white h-[60vh] overflow-hidden"
+    >
+      <!-- Video Background -->
+      <!-- <img src="../img/descarga (7).jpeg" alt=""> -->
+
+      <!-- Gradient Overlay -->
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-black/30 to-black/20 z-10"
+      ></div>
+
+      <!-- Content -->
+      <div class="relative z-20 px-4 max-w-3xl">
+        <h1 class="header-font text-4xl md:text-5xl font-bold mb-4">
+          Behind the Threads
+        </h1>
+        <p class="text-xl md:text-2xl">
+          The people and passion behind Autana's artisanal creations
+        </p>
+      </div>
+    </section>
 
     <!-- Our Story Section -->
     <section class="py-16 px-4 max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="header-font text-3xl md:text-4xl font-bold mb-4">Our Story</h2>
-            <div class="divider w-24 h-px bg-gray-200 mx-auto mb-6"></div>
-            <p class="max-w-3xl mx-auto text-lg">Autana was born from Daniela’s final project in Fashion Design and Marketing at Istituto Marangoni, but it’s much more than that. 
-                It’s a tribute to our roots, a celebration of our personal journey, and a love letter to Amazonas — the land where our story began. 
-                Through Autana, we bring to life the spirit, beauty, and strength of our homeland, weaving its essence into every design.</p>
+      <div class="text-center mb-16">
+        <h2 class="header-font text-3xl md:text-4xl font-bold mb-4">
+          Our Story
+        </h2>
+        <div class="divider w-24 h-px bg-gray-200 mx-auto mb-6"></div>
+        <p class="max-w-3xl mx-auto text-lg">
+          Autana was born from Daniela’s final project in Fashion Design and
+          Marketing at Istituto Marangoni, but it’s much more than that. It’s a
+          tribute to our roots, a celebration of our personal journey, and a
+          love letter to Amazonas — the land where our story began. Through
+          Autana, we bring to life the spirit, beauty, and strength of our
+          homeland, weaving its essence into every design.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h3 class="header-font text-2xl font-semibold mb-4">The Vision</h3>
+          <p class="mb-6">
+            Founded by Daniela Duarte Abdul Khalek, Autana is a heartfelt
+            tribute to our roots in Amazonas. It embodies the spirit of our
+            homeland — its vibrant culture, rich traditions, and deep connection
+            to nature. Through each design, we tell a story of heritage and
+            identity, blending ancestral craftsmanship with contemporary style
+            to inspire and honor where we come from.
+          </p>
+          <h3 class="header-font text-2xl font-semibold mb-4">The Name</h3>
+          <p>
+            Autana takes its name from the majestic Tepui mountain in Venezuela,
+            symbolizing our connection to nature, indigenous wisdom, and the
+            aspiration to elevate traditional craftsmanship to new heights.
+          </p>
         </div>
-        
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h3 class="header-font text-2xl font-semibold mb-4">The Vision</h3>
-                <p class="mb-6">Founded by Daniela Duarte Abdul Khalek, Autana is a heartfelt tribute to our roots in Amazonas. It embodies the spirit of our homeland — its vibrant culture, rich traditions, and deep connection to nature.
-                     Through each design, we tell a story of heritage and identity, blending ancestral craftsmanship with contemporary style to inspire and honor where we come from.</p>
-                <h3 class="header-font text-2xl font-semibold mb-4">The Name</h3>
-                <p>Autana takes its name from the majestic Tepui mountain in Venezuela, symbolizing our connection to nature, indigenous wisdom, and the aspiration to elevate traditional craftsmanship to new heights.</p>
-            </div>
-            <div class="bg-gray-50 p-8 rounded-lg">
-                <img src="../img/daniela.jpg" alt="Artisan working on textiles" class="rounded-lg shadow-md w-full h-auto">
-            </div>
+        <div class="bg-gray-50 p-8 rounded-lg">
+          <img
+            src="../img/daniela.jpg"
+            alt="Artisan working on textiles"
+            class="rounded-lg shadow-md w-full h-auto"
+          />
         </div>
+      </div>
     </section>
 
     <!-- Core Values -->
     <section class="py-16 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="header-font text-3xl md:text-4xl font-bold mb-4">Our Core Values</h2>
-                <div class="divider w-24 h-px bg-gray-300 mx-auto mb-6"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center px-6">
-                    <div class="values-icon">
-                        <i data-lucide="heart" class="w-6 h-6 text-primary"></i>
-                    </div>
-                    <h3 class="header-font text-xl font-semibold mb-3">Cultural Preservation</h3>
-                    <p>We honor and sustain traditional techniques that might otherwise disappear, ensuring artisans receive fair recognition and compensation.</p>
-                </div>
-                
-                <div class="text-center px-6">
-                    <div class="values-icon">
-                        <i data-lucide="leaf" class="w-6 h-6 text-primary"></i>
-                    </div>
-                    <h3 class="header-font text-xl font-semibold mb-3">Sustainable Practices</h3>
-                    <p>From natural dyes to organic materials, every element is chosen with environmental impact in mind.</p>
-                </div>
-                
-                <div class="text-center px-6">
-                    <div class="values-icon">
-                        <i data-lucide="sparkles" class="w-6 h-6 text-primary"></i>
-                    </div>
-                    <h3 class="header-font text-xl font-semibold mb-3">Modern Elegance</h3>
-                    <p>We reinterpret traditional designs for contemporary wardrobes, creating timeless pieces with cultural depth.</p>
-                </div>
-            </div>
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="header-font text-3xl md:text-4xl font-bold mb-4">
+            Our Core Values
+          </h2>
+          <div class="divider w-24 h-px bg-gray-300 mx-auto mb-6"></div>
         </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center px-6">
+            <div class="values-icon">
+              <i data-lucide="heart" class="w-6 h-6 text-primary"></i>
+            </div>
+            <h3 class="header-font text-xl font-semibold mb-3">
+              Cultural Preservation
+            </h3>
+            <p>
+              We honor and sustain traditional techniques that might otherwise
+              disappear, ensuring artisans receive fair recognition and
+              compensation.
+            </p>
+          </div>
+
+          <div class="text-center px-6">
+            <div class="values-icon">
+              <i data-lucide="leaf" class="w-6 h-6 text-primary"></i>
+            </div>
+            <h3 class="header-font text-xl font-semibold mb-3">
+              Sustainable Practices
+            </h3>
+            <p>
+              From natural dyes to organic materials, every element is chosen
+              with environmental impact in mind.
+            </p>
+          </div>
+
+          <div class="text-center px-6">
+            <div class="values-icon">
+              <i data-lucide="sparkles" class="w-6 h-6 text-primary"></i>
+            </div>
+            <h3 class="header-font text-xl font-semibold mb-3">
+              Modern Elegance
+            </h3>
+            <p>
+              We reinterpret traditional designs for contemporary wardrobes,
+              creating timeless pieces with cultural depth.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- The Team -->
     <section class="py-16 px-4 max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="header-font text-3xl md:text-4xl font-bold mb-4">The Team</h2>
-            <div class="divider w-24 h-px bg-gray-200 mx-auto mb-6"></div>
-            <p class="max-w-3xl mx-auto text-lg">Meet the creative minds bringing Autana to life</p>
+      <div class="text-center mb-16">
+        <h2 class="header-font text-3xl md:text-4xl font-bold mb-4">
+          The Team
+        </h2>
+        <div class="divider w-24 h-px bg-gray-200 mx-auto mb-6"></div>
+        <p class="max-w-3xl mx-auto text-lg">
+          Meet the creative minds bringing Autana to life
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Founder -->
+        <div class="team-card bg-white p-6 rounded-lg shadow-md text-center">
+          <div
+            class="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-light"
+          >
+            <img
+              src="../img/danielaPerfil.jpg"
+              alt="Daniela Duarte Abdul Khalek"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="header-font text-xl font-semibold mb-1">
+            Daniela Duarte Abdul Khalek
+          </h3>
+          <p class="text-secondary font-medium mb-4">
+            Founder & Creative Director
+          </p>
+          <p class="text-gray-600">
+            With a background in fashion design and anthropology, Daniela
+            bridges cultural heritage with contemporary design.
+          </p>
         </div>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Founder -->
-            <div class="team-card bg-white p-6 rounded-lg shadow-md text-center">
-                <div class="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-light">
-                    <img src="../img/danielaPerfil.jpg" alt="Daniela Duarte Abdul Khalek" class="w-full h-full object-cover">
-                </div>
-                <h3 class="header-font text-xl font-semibold mb-1">Daniela Duarte Abdul Khalek</h3>
-                <p class="text-secondary font-medium mb-4">Founder & Creative Director</p>
-                <p class="text-gray-600">With a background in fashion design and anthropology, Daniela bridges cultural heritage with contemporary design.</p>
-            </div>
-            
-            <!-- Developers -->
-            <div class="team-card bg-white p-6 rounded-lg shadow-md text-center">
-                <div class="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-light">
-                    <img src="../img/lesbianas.jpg" alt="Maria Domingo and Alejandra Rubio" class="w-full h-full object-cover">
-                </div>
-                <h3 class="header-font text-xl font-semibold mb-1">Maria Domingo & Alejandra Rubio</h3>
-                <p class="text-secondary font-medium mb-4">Web Developers</p>
-                <p class="text-gray-600">The technical architects behind Autana's digital presence, combining functionality with aesthetic sensibility.</p>
-            </div>
-            
-            <!-- Photographer -->
-            <div class="team-card bg-white p-6 rounded-lg shadow-md text-center">
-                <div class="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-light">
-                    <img src="../img/IMG_9778.JPG" alt="Sebastian Ginart" class="w-full h-full object-cover">
-                </div>
-                <h3 class="header-font text-xl font-semibold mb-1">Sebastian Ginart</h3>
-                <p class="text-secondary font-medium mb-4">Photographer</p>
-                <p class="text-gray-600">Captures the essence of each piece with a keen eye for detail and storytelling through imagery.</p>
-            </div>
+
+        <!-- Developers -->
+        <div class="team-card bg-white p-6 rounded-lg shadow-md text-center">
+          <div
+            class="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-light"
+          >
+            <img
+              src="../img/lesbianas.jpg"
+              alt="Maria Domingo and Alejandra Rubio"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="header-font text-xl font-semibold mb-1">
+            Maria Domingo & Alejandra Rubio
+          </h3>
+          <p class="text-secondary font-medium mb-4">Web Developers</p>
+          <p class="text-gray-600">
+            The technical architects behind Autana's digital presence, combining
+            functionality with aesthetic sensibility.
+          </p>
         </div>
+
+        <!-- Photographer -->
+        <div class="team-card bg-white p-6 rounded-lg shadow-md text-center">
+          <div
+            class="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-light"
+          >
+            <img
+              src="../img/IMG_9778.JPG"
+              alt="Sebastian Ginart"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="header-font text-xl font-semibold mb-1">
+            Sebastian Ginart
+          </h3>
+          <p class="text-secondary font-medium mb-4">Photographer</p>
+          <p class="text-gray-600">
+            Captures the essence of each piece with a keen eye for detail and
+            storytelling through imagery.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- Artisan Collaboration -->
     <section class="py-16 bg-primary text-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="header-font text-3xl md:text-4xl font-bold mb-6">Artisan Collaborations</h2>
-                    <p class="mb-6 text-lg">At the heart of Autana are the skilled artisans who bring each design to life. We work directly with craftspeople from indigenous communities, preserving their techniques while ensuring fair wages and working conditions.</p>
-                    <p class="text-light">Every purchase supports these traditional crafts and helps sustain cultural heritage for future generations.</p>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="../img/inspo.jpg" alt="Artisan working" class="rounded-lg shadow-md w-full h-64 object-cover">
-                    <img src="../img/inspo2.jpg" alt="Textile detail" class="rounded-lg shadow-md w-full h-64 object-cover">
-                    <img src="../img/descarga (5).jpeg" alt="Natural dyes" class="rounded-lg shadow-md w-full h-64 object-cover">
-                    <img src="../img/descarga (1).jpeg" alt="Hand weaving" class="rounded-lg shadow-md w-full h-64 object-cover">
-                </div>
-            </div>
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="header-font text-3xl md:text-4xl font-bold mb-6">
+              Artisan Collaborations
+            </h2>
+            <p class="mb-6 text-lg">
+              At the heart of Autana are the skilled artisans who bring each
+              design to life. We work directly with craftspeople from indigenous
+              communities, preserving their techniques while ensuring fair wages
+              and working conditions.
+            </p>
+            <p class="text-light">
+              Every purchase supports these traditional crafts and helps sustain
+              cultural heritage for future generations.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <img
+              src="../img/inspo.jpg"
+              alt="Artisan working"
+              class="rounded-lg shadow-md w-full h-64 object-cover"
+            />
+            <img
+              src="../img/inspo2.jpg"
+              alt="Textile detail"
+              class="rounded-lg shadow-md w-full h-64 object-cover"
+            />
+            <img
+              src="../img/descarga (5).jpeg"
+              alt="Natural dyes"
+              class="rounded-lg shadow-md w-full h-64 object-cover"
+            />
+            <img
+              src="../img/descarga (1).jpeg"
+              alt="Hand weaving"
+              class="rounded-lg shadow-md w-full h-64 object-cover"
+            />
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-white py-12 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <img src="../img/logoSinFondo.png" alt="Autana Logo" class="h-12 mb-6 md:mb-0">
-                
-                <div class="flex space-x-6 mb-6 md:mb-0">
-                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">
-                        <i data-lucide="facebook" class="w-6 h-6"></i>
-                    </a>
-                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">
-                        <i data-lucide="instagram" class="w-6 h-6"></i>
-                    </a>
-                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">
-                        <i data-lucide="linkedin" class="w-6 h-6"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="mt-8 text-center text-gray-500 text-sm">
-                <a href="./legal.html"><p >© Autana. Todos los derechos reservados.</p></a>
-            </div>
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <img
+            src="../img/logoSinFondo.png"
+            alt="Autana Logo"
+            class="h-12 mb-6 md:mb-0"
+          />
+
+          <div class="flex space-x-6 mb-6 md:mb-0">
+            <a
+              href="#"
+              class="text-gray-600 hover:text-primary transition-colors"
+            >
+              <i data-lucide="facebook" class="w-6 h-6"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-600 hover:text-primary transition-colors"
+            >
+              <i data-lucide="instagram" class="w-6 h-6"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-600 hover:text-primary transition-colors"
+            >
+              <i data-lucide="linkedin" class="w-6 h-6"></i>
+            </a>
+          </div>
         </div>
+
+        <div class="mt-8 text-center text-gray-500 text-sm">
+          <a href="./legal.html"
+            ><p>© Autana. Todos los derechos reservados.</p></a
+          >
+        </div>
+      </div>
     </footer>
 
     <script>
-        window.onload = () => {
-            lucide.createIcons();
-            
-            // Toggle mobile menu
-            const toggle = document.getElementById("menu-toggle");
-            const menu = document.getElementById("mobile-menu");
-            toggle.addEventListener("click", () => {
-                menu.classList.toggle("hidden");
-            });
-        };
+      window.onload = () => {
+        lucide.createIcons();
+        // Toggle mobile menu
+        const toggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("mobile-menu");
+        toggle.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+      };
     </script>
-</body>
+  </body>
 </html>

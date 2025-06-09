@@ -242,3 +242,77 @@ function showError(message) {
     // Opcional: Mostrar mensaje al usuario
     alert(`Recommended sizes:\nTop: ${talla_top}\nBottom: ${talla_bottom}`);
 }
+
+window.changePassword = async function() {
+  const current = document.getElementById('current_password').value;
+  const nueva = document.getElementById('new_password').value;
+  const error = document.getElementById('passwordError');
+  error.classList.add('hidden');
+  error.textContent = '';
+
+  // Mensaje de éxito
+  let successMsg = document.getElementById('passwordSuccess');
+  if (!successMsg) {
+    successMsg = document.createElement('p');
+    successMsg.id = 'passwordSuccess';
+    successMsg.className = 'text-green-600 text-sm mb-2';
+    error.parentNode.insertBefore(successMsg, error.nextSibling);
+  }
+  successMsg.classList.add('hidden');
+  successMsg.textContent = '';
+
+  if (!current || !nueva) {
+    error.textContent = 'Rellena ambos campos.';
+    error.classList.remove('hidden');
+    successMsg.classList.add('hidden');
+    return;
+  }
+
+  // 1. Verificar contraseña actual
+  const response = await fetch('verificarPasword.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password_actual: current })
+  });
+  const data = await response.json();
+
+  if (!data.success) {
+    error.textContent = 'La contraseña actual es incorrecta.';
+    error.classList.remove('hidden');
+    successMsg.classList.add('hidden');
+    return;
+  }
+
+  // 2. Cambiar contraseña
+  const response2 = await fetch('cambiar-password.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nueva_password: nueva })
+  });
+  const data2 = await response2.json();
+
+  if (data2.success) {
+    error.classList.add('hidden');
+    successMsg.textContent = '¡Contraseña cambiada correctamente!';
+    successMsg.classList.remove('hidden');
+    // Limpia los campos
+    document.getElementById('current_password').value = '';
+    document.getElementById('new_password').value = '';
+    // Opcional: Oculta el mensaje tras unos segundos y cierra el modal
+    setTimeout(() => {
+      document.getElementById('passwordModal').classList.add('hidden');
+      successMsg.classList.add('hidden');
+    }, 2000);
+  } else {
+    error.textContent = data2.message || 'Error al cambiar la contraseña.';
+    error.classList.remove('hidden');
+    successMsg.classList.add('hidden');
+  }
+}
+
+window.toggleModal = function() {
+  document.getElementById('passwordModal').classList.toggle('hidden');
+  document.getElementById('current_password').value = '';
+  document.getElementById('new_password').value = '';
+  document.getElementById('passwordError').classList.add('hidden');
+}
