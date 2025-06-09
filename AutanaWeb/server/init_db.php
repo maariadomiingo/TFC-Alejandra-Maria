@@ -128,21 +128,21 @@ try {
         [
             'nombre' => 'Collection 1 - Mamey Wood',
             'precio' => 120,
-            'imagen_url' => '../img/vestido.jpg',
+            'imagen_url' => '../img/outfit1 (2).png',
             'stripe_product_id' => 'prod_SOTnUnChSmNeCF',
             'stripe_price_id' => 'price_1RTgpqGh171OKFHVAbr3OP5x'
         ],
         [
             'nombre' => 'Collection 2 - Amazonas',
             'precio' => 150,
-            'imagen_url' => '../img/outfit2.jpg',
+            'imagen_url' => '../img/outfit2 (2).png',
             'stripe_product_id' => 'prod_SOtVrnssa3LOoi',
             'stripe_price_id' => 'price_1RU5iXGh171OKFHVvjSFRfWL'
         ],
         [
             'nombre' => 'Collection 3 - Serene Earth',
             'precio' => 140,
-            'imagen_url' => '../img/outfit3.jpg',
+            'imagen_url' => '../img/oufit3.png',
             'stripe_product_id' => 'prod_SOtyJdoQypITGL',
             'stripe_price_id' => 'price_1RU6AlGh171OKFHVfmGHgjq6'
         ],
