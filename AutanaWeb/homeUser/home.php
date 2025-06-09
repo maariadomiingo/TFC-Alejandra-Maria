@@ -231,7 +231,7 @@ $username = $isLoggedIn ? $_SESSION['user_name'] : '';
 
     <!-- Derechos de autor -->
     <div class="mt-8 text-center text-gray-500 text-sm">
-      <p>© Autana. Todos los derechos reservados.</p>
+        <a href="../home/legal.html"><p >© Autana. Todos los derechos reservados.</p></a>
     </div>
   </div>
 </footer>

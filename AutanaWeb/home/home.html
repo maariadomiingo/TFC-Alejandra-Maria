@@ -37,9 +37,22 @@
         <li><a href="../home/aboutUs.html" class="hover:text-black">Behind the threads</a></li>
       </ul>
 
-        <a href="../cart/cart.html" aria-label="Cart">
-          <i data-lucide="shopping-cart" class="w-6 h-6 text-gray-700 hover:text-black"></i>
-        </a>
+          <!-- Icons -->
+        <div class="flex items-center space-x-4">
+          <button aria-label="Login">
+            <a href="../login/login.html" aria-label="Login">
+              <i
+                data-lucide="user"
+                class="w-6 h-6 text-gray-700 hover:text-black"
+              ></i>
+            </a>
+          </button>
+          <button aria-label="Cart" onclick="goToCart()">
+            <i
+              data-lucide="shopping-cart"
+              class="w-6 h-6 text-gray-700 hover:text-black"
+            ></i>
+          </button>
 
         <!-- Mobile Hamburger -->
         <button id="menu-toggle" class="md:hidden">
@@ -266,7 +279,7 @@
 
       <!-- Derechos de autor -->
       <div class="mt-8 text-center text-gray-500 text-sm">
-        <p>© Autana. Todos los derechos reservados.</p>
+        <a href="./legal.html"><p >© Autana. Todos los derechos reservados.</p></a>
       </div>
     </div>
   </footer>

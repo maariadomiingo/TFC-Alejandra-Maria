@@ -53,22 +53,15 @@ window.onload = () => {
   const chatForm = document.getElementById("chatForm");
   const chatInput = document.getElementById("chatInput");
   const chatMessages = document.getElementById("chatMessages");
-  let chatInterval = null;
 
   if (openBtn) {
     openBtn.onclick = () => {
       chatModal.style.display = "flex";
       loadMessages();
-      // Inicia el refresco automático cada 2 segundos
-      chatInterval = setInterval(loadMessages, 2000);
     };
   }
   if (closeBtn) {
-    closeBtn.onclick = () => {
-      chatModal.style.display = "none";
-      // Detiene el refresco automático
-      clearInterval(chatInterval);
-    };
+    closeBtn.onclick = () => chatModal.style.display = "none";
   }
 
   // Cerrar modal al hacer click fuera
@@ -106,7 +99,7 @@ window.onload = () => {
         chatMessages.innerHTML = "";
         data.mensajes.forEach(msg => {
           const div = document.createElement("div");
-          div.textContent = msg.texto_mensaje;
+          div.textContent = msg.remitente + ": " + msg.mensaje;
           chatMessages.appendChild(div);
         });
         chatMessages.scrollTop = chatMessages.scrollHeight;

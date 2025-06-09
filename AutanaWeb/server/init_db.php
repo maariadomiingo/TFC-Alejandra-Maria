@@ -27,11 +27,19 @@ try {
     CREATE TABLE IF NOT EXISTS user_profiles (
         id INT AUTO_INCREMENT PRIMARY KEY,
         usuario_id INT NOT NULL,
-        talla_top VARCHAR(10),
-        talla_bottom VARCHAR(10),    
-        direccion_envio TEXT,
+         hombro DECIMAL(5,2) DEFAULT NULL,
+        pecho DECIMAL(5,2) DEFAULT NULL,
+        cintura DECIMAL(5,2) DEFAULT NULL,
+        cadera DECIMAL(5,2) DEFAULT NULL,
+        altura DECIMAL(5,2) DEFAULT NULL,    
+        direccion_calle VARCHAR(100),
+        direccion_ciudad VARCHAR(50),
+        direccion_estado VARCHAR(50),
+        direccion_codigo_postal VARCHAR(20),
+        direccion_pais VARCHAR(50),
         FOREIGN KEY (usuario_id) REFERENCES Usuarios(id) ON DELETE CASCADE
     );
+  
     CREATE TABLE IF NOT EXISTS productos (
         id INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(100) NOT NULL,
@@ -82,13 +90,6 @@ try {
         FOREIGN KEY (chat_id) REFERENCES chats(id) ON DELETE CASCADE,
         FOREIGN KEY (remitente_id) REFERENCES Usuarios(id) ON DELETE CASCADE
     );
-    CREATE TABLE IF NOT EXISTS admins (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        correo VARCHAR(100) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL,
-        nombre VARCHAR(100) NOT NULL,
-        creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
     ";
     $pdo->exec($crearTablas);
 
@@ -126,7 +127,7 @@ try {
         [
             'nombre' => 'Collection 1 - Mamey Wood',
             'precio' => 120,
-            'imagen_url' => '../img/outfit1.jpg',
+            'imagen_url' => '../img/vestido.jpg',
             'stripe_product_id' => 'prod_SOTnUnChSmNeCF',
             'stripe_price_id' => 'price_1RTgpqGh171OKFHVAbr3OP5x'
         ],
@@ -181,20 +182,6 @@ try {
                 ':stripe_price_id' => $producto['stripe_price_id']
             ]);
         }
-    }
-
-    // Insertar admin de prueba si no existe
-    $checkAdmin = $pdo->prepare("SELECT COUNT(*) FROM admins WHERE correo = :correo");
-    $checkAdmin->execute([':correo' => 'admin1@autana.com']);
-    $existsAdmin = $checkAdmin->fetchColumn();
-    if ($existsAdmin == 0) {
-        $hashedPassword = password_hash('admin123', PASSWORD_DEFAULT);
-        $insertAdmin = $pdo->prepare("INSERT INTO admins (correo, password, nombre) VALUES (:correo, :password, :nombre)");
-        $insertAdmin->execute([
-            ':correo' => 'admin1@autana.com',
-            ':password' => $hashedPassword,
-            ':nombre' => 'admin1'
-        ]);
     }
 } catch (PDOException $e) {
     // Lanza la excepción para que el archivo principal la capture y devuelva JSON
