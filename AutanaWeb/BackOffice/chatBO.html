@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat - Autana Dashboard</title>
+    <link rel="stylesheet" href="homeBO.css" />
+  </head>
+  <body>
+    <div
+      class="container"
+      style="justify-content: center; align-items: flex-start"
+    >
+      <main
+        class="main-content"
+        style="width: 100%; max-width: 700px; margin: 40px auto"
+      >
+        <div class="card">
+          <header class="card-header">
+            <h2>Chat</h2>
+            <a
+              href="homeBO.html"
+              class="btn-back"
+              style="
+                text-decoration: none;
+                padding: 6px 14px;
+                background: #4a4a4a;
+                color: #fff;
+                border-radius: 20px;
+              "
+              >Back</a
+            >
+          </header>
+          <div id="chats-list"></div>
+          <div id="chat-admin-modal" style="display: none">
+            <h3 id="chat-admin-title"></h3>
+            <div
+              id="chat-admin-messages"
+              style="
+                height: 200px;
+                padding: 0.5rem;
+                overflow-y: auto;
+                border: 1px solid #eee;
+                margin-bottom: 1rem;
+              "
+            ></div>
+            <form id="chat-admin-form">
+              <input
+                type="text"
+                id="chat-admin-input"
+                placeholder="Escribe tu respuesta..."
+                required
+              />
+              <button type="submit">Enviar</button>
+            </form>
+            <button id="close-admin-chat">Cerrar</button>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="homeBO.js"></script>
+  </body>
+</html>

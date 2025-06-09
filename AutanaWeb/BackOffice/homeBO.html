@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="homeBO.css" />
   </head>
   <body>
+    <video autoplay muted loop id="bg-video" style="
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      object-fit: cover;
+      ">
+      <source src="../img/Vídeo sin título ‐ Hecho con Clipchamp (1).mp4" type="video/mp4" />
+      Tu navegador no soporta video HTML5.
+    </video>
     <div class="container">
       <!-- Sidebar -->
       <aside class="sidebar">
@@ -27,9 +41,13 @@
             <img src="../img/cart.svg" alt="Purchases" class="icon" />
             <span>Purchases</span>
           </a>
+          <a href="chatBO.html" class="nav-item" target="_blank" id="nav-chat">
+            <img src="../img/chatBO.png" alt="Chat" class="icon" />
+            <span>Chat</span>
+          </a>
         </nav>
         <div class="logout">
-          <a href="#">
+          <a href="logout.php">
             <img src="../img/off.svg" alt="Log out" class="icon" />
             <span>Log out</span>
           </a>
@@ -37,47 +55,16 @@
       </aside>
 
       <!-- Main content -->
-      <main class="main-content">
-        <section class="card">
+      <main class="main-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh;">
+        <section class="card" style="margin: 0; width: 100%; max-width: 900px; min-height: 400px; box-sizing: border-box;">
           <header class="card-header">
             <h2>Recent Users</h2>
             <button class="btn-viewall" id="btn-viewall">View all</button>
           </header>
-          <ul class="user-list" id="recent-users-list">
+          <ul class="user-list" id="recent-users-list" style="min-height: 300px;">
             <!-- Los usuarios se cargarán aquí por JS -->
           </ul>
         </section>
-
-        <!-- Chats Section SIEMPRE VISIBLE -->
-        <div id="chats-section">
-          <h2>Chats con clientes</h2>
-          <div id="chats-list"></div>
-          <div id="chat-admin-modal" style="display: none">
-            <h3 id="chat-admin-title"></h3>
-            <div
-              id="chat-admin-messages"
-              style="
-                height: 200px;
-                padding: 0.5rem;
-                overflow-y: auto;
-                border: 1px solid #eee;
-                margin-bottom: 1rem;
-              "
-            ></div>
-            <form id="chat-admin-form">
-              <input
-                type="text"
-                id="chat-admin-input"
-                placeholder="Escribe tu respuesta..."
-                required
-              />
-              <button type="submit">Enviar</button>
-            </form>
-            <button id="close-admin-chat">Cerrar</button>
-          </div>
-        </div>
-      </main>
-
       <!-- Users Section (oculto por defecto) -->
       <section id="users-section" style="display: none">
         <header class="card-header">
