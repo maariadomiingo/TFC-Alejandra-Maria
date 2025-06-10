@@ -246,7 +246,7 @@ $extra = $productsExtra[$productId];
 
       <!-- Copyright -->
       <div class="mt-8 text-center text-gray-500 text-sm">
-        <p>© Autana. All rights reserved.</p>
+       <a href="../home/legal.html"><p>© Autana. All rights reserved.</p></a> 
       </div>
     </div>
   </footer>
