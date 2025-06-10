@@ -184,6 +184,30 @@ try {
             ]);
         }
     }
+
+    $pdo->exec("
+    CREATE TABLE IF NOT EXISTS admins (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(100) NOT NULL,
+        correo VARCHAR(100) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL
+    );
+    ");
+
+    // Insertar admin por defecto si no existe
+    $checkAdmin = $pdo->prepare("SELECT COUNT(*) FROM admins WHERE correo = ?");
+    $checkAdmin->execute(['admin@autana.com']);
+    if ($checkAdmin->fetchColumn() == 0) {
+        $hashed = password_hash('admin123', PASSWORD_DEFAULT);
+        $pdo->prepare("INSERT INTO admins (nombre, correo, password) VALUES (?, ?, ?)")
+            ->execute(['admin1', 'admin@autana.com', $hashed]);
+    }
+
+    // Asegura que la columna remitente_tipo existe en la tabla mensajes
+    $colRemitenteTipo = $pdo->query("SHOW COLUMNS FROM mensajes LIKE 'remitente_tipo'")->fetch();
+    if (!$colRemitenteTipo) {
+        $pdo->exec("ALTER TABLE mensajes ADD COLUMN remitente_tipo VARCHAR(20) DEFAULT 'usuario'");
+    }
 } catch (PDOException $e) {
     // Lanza la excepción para que el archivo principal la capture y devuelva JSON
     throw $e;
