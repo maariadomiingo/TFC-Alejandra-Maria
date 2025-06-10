@@ -128,44 +128,44 @@ try {
         [
             'nombre' => 'Collection 1 - Mamey Wood',
             'precio' => 120,
-            'imagen_url' => '../img/outfit1 (2).png',
+            'imagen_url' => '../img/vestido.jpg',
             'stripe_product_id' => 'prod_SOTnUnChSmNeCF',
-            'stripe_price_id' => 'price_1RTgpqGh171OKFHVAbr3OP5x'
+            'stripe_price_id' => 'price_1RYZkQGh171OKFHVqVLVW1QL'
         ],
         [
             'nombre' => 'Collection 2 - Amazonas',
             'precio' => 150,
-            'imagen_url' => '../img/outfit2 (2).png',
+            'imagen_url' => '../img/outfit2.jpg',
             'stripe_product_id' => 'prod_SOtVrnssa3LOoi',
-            'stripe_price_id' => 'price_1RU5iXGh171OKFHVvjSFRfWL'
+            'stripe_price_id' => 'price_1RYZkeGh171OKFHVEZH6D1DQ'
         ],
         [
             'nombre' => 'Collection 3 - Serene Earth',
             'precio' => 140,
-            'imagen_url' => '../img/oufit3.png',
+            'imagen_url' => '../img/outfit3.jpg',
             'stripe_product_id' => 'prod_SOtyJdoQypITGL',
-            'stripe_price_id' => 'price_1RU6AlGh171OKFHVfmGHgjq6'
+            'stripe_price_id' => 'price_1RYZkqGh171OKFHV9MExPKwe'
         ],
         [
             'nombre' => 'Collection 4 - Emerald Canopy',
             'precio' => 110,
             'imagen_url' => '../img/outfit4.jpg',
             'stripe_product_id' => 'prod_SOu0xHcpMEcP0x',
-            'stripe_price_id' => 'price_1RU6CAGh171OKFHVzVtsz851'
+            'stripe_price_id' => 'price_1RYZlOGh171OKFHV7tRv19LJ'
         ],
         [
             'nombre' => 'Collection 5 - Ceiba Spirit',
             'precio' => 130,
             'imagen_url' => '../img/outfit5.webp',
             'stripe_product_id' => 'prod_SOu0hIve6FzxNT',
-            'stripe_price_id' => 'price_1RU6CnGh171OKFHVGlhcVxFS'
+            'stripe_price_id' => 'price_1RYZlaGh171OKFHVAtyy7OOx'
         ],
         [
             'nombre' => 'Collection 6 - Tepui Waters',
             'precio' => 135,
             'imagen_url' => '../img/outfit3.avif',
             'stripe_product_id' => 'prod_SOu1LVbogt7374',
-            'stripe_price_id' => 'price_1RU6DKGh171OKFHVSNQmAdFy'
+            'stripe_price_id' => 'price_1RYZlmGh171OKFHVm0MryFm6'
         ],
     ];
 

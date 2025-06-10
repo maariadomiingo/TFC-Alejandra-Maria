@@ -11,6 +11,7 @@ function loadCart() {
     fetch('get_cart.php')
         .then(res => res.json())
         .then(products => {
+            console.log(products); // <-- Añade esto para depurar
             cart = products.map(p => ({
                 id: p.id,
                 name: p.nombre,
@@ -18,7 +19,7 @@ function loadCart() {
                 currency: p.moneda_stripe,
                 quantity: 1,
                 stripe_price_id: p.stripe_price_id,
-                imagen_url: p.imagen_url // <-- Añade esto
+                imagen_url: p.imagen_url
             }));
             updateCartDisplay();
         });
